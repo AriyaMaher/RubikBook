@@ -1,0 +1,111 @@
+﻿@model RubikBook.Database.Models.Product
+
+@{
+	ViewData["Title"] = "Edit";
+	Layout = "~/Areas/Admin/Views/Shared/_PanelLayout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Product</h4>
+<hr />
+<form asp-action="Edit" class="p-4" enctype="multipart/form-data">
+	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+	<div class="d-flex justify-content-evenly">
+		<div class="col-md-8 text-center">
+			<div class="container">
+				<div class="row row-cols-3">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<input type="hidden" asp-for="Id" />
+					<div class="form-group col">
+						<label asp-for="ProductName" class="control-label"></label>
+						<input asp-for="ProductName" class="form-control" />
+						<span asp-validation-for="ProductName" class="text-danger"></span>
+					</div>
+					<div class="form-group col">
+						<label asp-for="GroupId" class="control-label"></label>
+						<select asp-for="GroupId" class="form-control" asp-items="ViewBag.GroupId"></select>
+						<span asp-validation-for="GroupId" class="text-danger"></span>
+					</div>
+					<div class="form-group col">
+						<label asp-for="AuthorId" class="control-label"></label>
+						<select asp-for="AuthorId" class="form-control" asp-items="ViewBag.AuthorId"></select>
+						<span asp-validation-for="AuthorId" class="text-danger"></span>
+					</div>
+					<div class="form-group col">
+						<label asp-for="PublisherId" class="control-label"></label>
+						<select asp-for="PublisherId" class="form-control" asp-items="ViewBag.PublisherId"></select>
+						<span asp-validation-for="PublisherId" class="text-danger"></span>
+					</div>
+					<div class="form-group col">
+						<label asp-for="TotalPages" class="control-label"></label>
+						<input asp-for="TotalPages" class="form-control" />
+						<span asp-validation-for="TotalPages" class="text-danger"></span>
+					</div>
+					<div class="form-group col">
+						<label asp-for="CoverType" class="control-label"></label>
+						<input asp-for="CoverType" class="form-control" />
+						<span asp-validation-for="CoverType" class="text-danger"></span>
+					</div>
+					<div class="form-group col">
+						<label asp-for="AgeCategoryId" class="control-label"></label>
+						<select asp-for="AgeCategoryId" class="form-control" asp-items="ViewBag.AgeCategoryId"></select>
+						<span asp-validation-for="AgeCategoryId" class="text-danger"></span>
+					</div>
+					<div class="form-group col">
+						<label asp-for="Des" class="control-label"></label>
+						<input asp-for="Des" class="form-control" />
+						<span asp-validation-for="Des" class="text-danger"></span>
+					</div>
+					<div class="form-group col">
+						<label asp-for="Price" class="control-label"></label>
+						<input asp-for="Price" class="form-control" />
+						<span asp-validation-for="Price" class="text-danger"></span>
+					</div>
+					<div class="form-group col">
+						<label asp-for="Inventory" class="control-label"></label>
+						<input asp-for="Inventory" class="form-control" />
+						<span asp-validation-for="Inventory" class="text-danger"></span>
+					</div>
+					<div class="form-group col">
+						<label asp-for="SellOff" class="control-label"></label>
+						<input asp-for="SellOff" class="form-control" />
+						<span asp-validation-for="SellOff" class="text-danger"></span>
+					</div>
+					<div class="form-group col">
+						<label asp-for="Img" class="control-label"></label>
+						<img id="product-preview" src="~/image/product/@Model.Img" width="128">
+						<input asp-for="Img" id="img-name" class="form-control" />
+						<input type="file" name="productImg" accept=".jpg,.png" onchange="ImgPreview(this)" />
+						<span asp-validation-for="Img" class="text-danger"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-7 text-center mt-3">
+		<input type="submit" value="ایجاد" class="btn btn-success color-white" />
+		<a asp-action="Index" class="btn btn-warning"> <span class="fa fa-arrow-left"></span>برگشت</a>
+		<label class="form-check-label">
+			<input class="form-check-input" asp-for="NotShow" /> @Html.DisplayNameFor(model => model.NotShow)
+		</label>
+	</div>
+</form>
+
+
+
+<script>
+	function ImgPreview(input) {
+		if (input.files && input.files[0]) {
+			let reader = new FileReader();
+			reader.onload = (e) => {
+				let img = document.getElementById('product-preview');
+				img.setAttribute('src', e.target.result);
+
+				//input file name (asp-for="img")
+				document.getElementById('img-name').value = input.files[0].name;
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+</script>

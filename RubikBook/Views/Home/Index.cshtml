@@ -1,0 +1,39 @@
+﻿@model RubikBook.Core.ViewModels.AllViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div class="hero"></div>
+
+@*Products Partial*@
+<partial name="ProductsPartial.cshtml" model="@Model.Products" />
+
+
+@*Products Slider Partial*@
+<div class="container mt-5 text-center">
+    <h3 class="text-center"><span class="text-success"> فروش</span> ویژه</h3>
+    <hr class="hr-2">
+    <div class="row row-cols-1 row-cols-md-4">
+        <div class="owl-carousel">
+            <partial name="ProductsSliderPartial" model="@Model.ProductsSellOff" />
+        </div>
+    </div>
+</div>
+
+
+@*Banner*@
+<partial name="BannerPartial.cshtml" />
+
+@*Footer*@
+<partial name="FooterPartial.cshtml" />
+
+
+
+
+
+
+
+
+
+

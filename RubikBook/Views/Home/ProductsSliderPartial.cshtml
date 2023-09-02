@@ -1,0 +1,22 @@
+﻿@model IEnumerable<RubikBook.Database.Models.Product>
+
+
+<!--book slider-->
+
+
+            @foreach (var item in Model)
+            {
+                <div class="item">
+                    <div class="col mb-4">
+                        <div class="book-item">
+                            <img src="~/Image/Product/@item.Img" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">@item.ProductName</h5>
+                                <p class="card-text">$@item.Price</p>
+                                <a asp-controller="home" asp-action="ProductInfo" asp-route-id="@item.Id" class="btn btn-outline-success">اطلاعات بیشتر</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+

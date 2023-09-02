@@ -1,0 +1,38 @@
+﻿@model RubikBook.Database.Models.Author
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_PanelLayout.cshtml";
+}
+
+<h2 class="p-2">افزودن نویسنده جدید</h2>
+
+<hr />
+<div class="row d-flex justify-content-center">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="AuthorName" class="control-label"></label>
+                <input asp-for="AuthorName" class="form-control" />
+                <span asp-validation-for="AuthorName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AuthorDes" class="control-label"></label>
+                <input asp-for="AuthorDes" class="form-control" />
+                <span asp-validation-for="AuthorDes" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="NotShow" /> @Html.DisplayNameFor(model => model.NotShow)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="ایجاد" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-warning"><span class="fa fa-arrow-left"></span>برگشت</a>
+            </div>
+        </form>
+    </div>
+</div>
+    
+

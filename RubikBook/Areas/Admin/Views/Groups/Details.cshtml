@@ -1,0 +1,48 @@
+﻿@model RubikBook.Database.Models.Group
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_PanelLayout.cshtml";
+}
+
+<h2 class="p-2">@Model.GroupName | جزئیات</h2>
+
+<div>
+    <hr />
+    <div class="container d-flex align-items-center justify-content-center">
+    <dl class="row alert alert-info col-md-6 col-12">
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.GroupName)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.GroupName)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.GroupDes)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.GroupDes)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.NotShow)
+        </dt>
+        <dd class = "col-sm-8">
+            @*@Html.DisplayFor(model => model.NotShow)*@
+            @{
+                if (Model.NotShow)
+                {
+                  <a class="btn btn-danger rounded-5"> <span class="fa fa-times-circle" ></span> عدم نمایش عمومی</a>
+                }
+                else
+                {
+                  <a class="btn btn-success rounded-5"> <span class="fa fa-check-circle" ></span> نمایش عمومی</a>
+                }
+            }
+        </dd>
+    </dl>
+</div>
+</div>
+<div class="container d-flex align-items-center justify-content-center">
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-success"> <span class="fa fa-edit"></span>ویرایش</a> |
+    <a asp-action="Index" class="btn btn-warning"> <span class="fa fa-arrow-left"></span>برگشت</a>
+</div>

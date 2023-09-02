@@ -1,0 +1,64 @@
+﻿@font-face {
+    font-family: "shabnam";
+    src: url("../Fonts/Shabnam-Medium-FD-WOL.ttf")
+}
+@font-face {
+    font-family: "shabnamBold";
+    src: url("../Fonts//Shabnam-Bold-FD-WOL.ttf")
+}
+
+
+body {
+    background-color: whitesmoke;
+    margin: auto;
+    font-family: shabnamBold !important;
+}
+
+
+.sidebar {
+    position: fixed;
+    background-color: rgb(32, 58, 36);
+    border-radius: 5px 0 0 5px;
+    min-height: 100svh;
+    max-height: 100svh;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 5px;
+    direction: rtl;
+}
+
+    .sidebar a {
+        color: white !important;
+        margin-top: 3px;
+        display: block;
+        padding: 5px 2px;
+        text-decoration: none;
+        transition: 0.3s;
+        font-size:19px
+    }
+
+        .sidebar a span {
+            color: orange;
+            margin-left: 3px;
+        }
+
+        .sidebar a:hover {
+            cursor: pointer;
+            color: orange !important;
+        }
+
+
+thead tr , tbody tr {
+    text-align:center;
+}
+
+.form-group label {
+    float: right;
+    margin-top:20px;
+}
+
+.form-group input, .form-group select{
+    text-align: right;
+}
+

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<RubikBook.Database.Models.Product>
+
+<!--book new add-->
+<div class="container">
+    <h4 class="add-title text-center">لیست جدید کتاب ها</h4>
+    <hr class="hr-2">
+</div>
+
+<div class="container text-center mt-5">
+    <div class="row justify-content-md-center">
+
+        @foreach (var item in Model)
+        {
+            <div class="product-card">
+                <div class="main-images">
+                    <img id="blue" class="blue active"
+                         src="~/Image/Product/@item.Img"
+                         alt="blue">
+                </div>
+                <div class="shoe-details">
+                    <span class="shoe_name">@item.ProductName</span>
+                    <div class="stars">
+                        <i class='bx bxs-star'></i>
+                    </div>
+                </div>
+                <div class="group-price">
+                    <div class="group-option">
+                        <span class="group">دسته بندی: @item.Group.GroupName </span>
+                    </div>
+                    <div class="price">
+                        <span class="price_num">@item.Price</span>
+                        <span class="price_letter">Nine dollar only</span>
+                    </div>
+                </div>
+                <a asp-controller="home" asp-action="ProductInfo" asp-route-id="@item.Id" class="btn btn-outline-success">اطلاعات بیشتر</a>
+            </div>
+        }
+
+    </div>
+</div>
+

@@ -1,0 +1,38 @@
+﻿@model RubikBook.Core.ViewModels.RegisterViewModel
+
+@{
+	ViewData["Title"] = "Register";
+	Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+<div class="container">
+
+	<form asp-controller="account" asp-action="register" class="login-form">
+		<h3 style="color: rgb(23, 82, 211);"> Sign Up</h3>
+
+		<div class="center-item">
+
+			<label asp-for="Mobile"></label>
+			<input asp-for="Mobile" type="tel" class="all-input"><br>
+			<span asp-validation-for="Mobile" class="text-warning"></span>
+
+			<label asp-for="Password"></label>
+			<input asp-for="Password" type="password" class="all-input"><br>
+			<span asp-validation-for="Password" class="text-warning"></span>
+
+
+			<label asp-for="RePassword"></label>
+			<input asp-for="RePassword" type="password" class="all-input"><br><br>
+			<span asp-validation-for="RePassword" class="text-warning"></span>
+
+
+			<button type="submit" class="submit2">ثبت نام</button>
+
+			<p class="signuptext"><a class="signup" asp-action="Login">Login</a>آیا میخواهید ورود کنید؟</p>
+
+		</div>
+	</form>
+
+</div>
+
+

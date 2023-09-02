@@ -1,0 +1,10 @@
+﻿@model RubikBook.Database.Models.AgeCategory
+
+<div>
+    <h4 class="text-danger">آیا حذف می کنید؟</h4>
+    <form asp-controller="AgeCategories" asp-action="delete">
+        <input asp-for="Id" hidden />
+        <button type="submit" class="btn btn-danger">Yes</button>
+        <a asp-controller="AgeCategories" asp-action="index" class="btn btn-outline-danger">No</a>
+    </form>
+</div>

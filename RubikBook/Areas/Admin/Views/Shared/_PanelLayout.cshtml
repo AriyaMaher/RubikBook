@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewBag.Title</title>
+
+    <link href="~/Lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/Panelstyle.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="sidebar col-md-3 col-6" >
+    <a asp-controller="Panel" asp-action="Index"><span class="fa fa-home fa-lg"></span>صفحه هوم</a>
+    <a><span class="fa fa-users fa-lg"></span>کاربران</a>
+    <a asp-controller="Groups" asp-action="Index" ><span class="fa fa-list fa-lg"></span>دسته بندی ها</a>
+    <a asp-controller="Products" asp-action="Index"><span class="fa fa-book fa-lg"></span>محصولات</a>
+    <a asp-controller="AgeCategories" asp-action="Index"><span class="fa fa-user fa-lg"></span>رده بندی سن</a>
+    <a asp-controller="Authors" asp-action="Index"><span class="fa fa-pencil fa-lg"></span>نویسندگان</a>
+    <a asp-controller="Publishers" asp-action="Index"><span class="fa fa-handshake-o fa-lg"></span>ناشر ها</a>
+    <a><span class="fa fa-shopping-bag fa-lg"></span>سفارشات</a>
+    <a><span class="fa fa-gears fa-lg"></span>تنظیمات</a>
+    <a><span class="fa fa-headphones fa-lg"></span>پشتیبانی</a>
+    <a href="~/account/logout"><span class="fa fa-sign-out fa-lg"></span>خروج</a>
+    </div>
+    <div class="col-md-9 col-6" >
+        @RenderBody()
+    </div>
+</body>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/Lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/minscript.js"></script>
+</html>
+

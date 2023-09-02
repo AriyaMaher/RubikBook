@@ -1,0 +1,74 @@
+﻿@model RubikBook.Core.ViewModels.AllViewModel
+
+@{
+    ViewData["Title"] = "ProductInfo";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+
+  <div class="container con-bg dir"> 
+    <div class="row">
+
+        @{
+            var price = Model.productInfo.Price;
+            var sellOff = Model.productInfo.SellOff;
+            var finalPrice = price;
+
+            if (sellOff>0)
+            {
+                finalPrice = price - (price * sellOff / 100);
+            }
+        }
+
+
+
+
+      <div class="col-md-5 con-bg-img">
+        <img class="pr-img align align-items-center" src="~/Image/Product/@Model.productInfo.Img" alt="@Model.productInfo.Img">
+      </div>
+
+      <div class="col-md-7 dir pr-5">
+        <h5 class="text-center">کتاب @Model.productInfo.ProductName</h5>
+        <div class="hr-2"></div><br>
+        <h6 class="float-right text-secondary con-bg-small">نویسنده: <span class="text-dark"> @Model.productInfo.Author.AuthorName</span></h6><br><br>
+        <h6 class="float-right text-secondary con-bg-small">دسته بندی: <span class="text-dark">@Model.productInfo.Group.GroupName</span></h6><br><br>
+        <h6 class="float-right text-secondary con-bg-small">انتشارات: <span class="text-dark">@Model.productInfo.Publisher.PublisherName</span></h6><br><br>
+        <h6 class="float-right text-secondary con-bg-small"> نوع جلد: <span class="text-dark">@Model.productInfo.CoverType</span></h6><br><br>
+        <h6 class="float-right text-secondary con-bg-small"> موجودی: <span class="text-dark">@Model.productInfo.Inventory</span></h6><br><br>
+        <h6 class="float-right text-secondary con-bg-small"> تعداد صفحات: <span class="text-dark">@Model.productInfo.TotalPages</span></h6><br><br>
+
+        <s class="text-danger fw-bold">@price.ToString("n0")</s>
+        <span class="bg-danger rounded-circle p-1 pt-2 pb-2 small fw-bold text-white">@Model.productInfo.SellOff%</span>
+        <h4 class="text-center text-dark"> قیمت: <span class="text-success">@finalPrice.ToString("n0")</span></h4>
+
+        <hr>
+        <p style="font-size: 13px; text-align:right" class="text-secondary">درخواست مرجوع کردن کالا در گروه دفتر با دلیل "انصراف از خرید" تنها در صورتی قابل تایید است که کالا در شرایط اولیه باشد.</p>
+
+
+        <a class="btn btn-success btn-shopping " href="#">افزودن به سبد خرید    <span class="icon-shopping-bag"></span></a>
+
+      </div>
+
+    </div>
+  </div>
+
+
+
+@*similar product*@
+@{
+    var products = ViewBag.SimilarProduct;
+
+    if (products!=null && products.Count>0)
+    {
+        <div class="container mt-5 text-center">
+            <h3 class="text-center"><span class="text-success"> محصولات</span> مرتبط</h3>
+            <hr class="hr-2">
+            <div class="row row-cols-1 row-cols-md-4">
+                <div class="owl-carousel">
+                    <partial name="ProductsSliderPartial.cshtml" model="ViewBag.SimilarProduct" />
+                </div>
+            </div>
+        </div>
+    }
+}
