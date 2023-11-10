@@ -4,28 +4,53 @@
 	Layout = "~/Views/Shared/_AccountLayout.cshtml";
 }
 
-<div class="container">
 
-	<form asp-controller="account" asp-action="Login" class="login-form">
-		<h3 style="color: rgb(23, 82, 211);"> Sign in</h3>
 
-		<div class="center-item">
 
-			<label asp-for="Mobile"></label>
-			<input asp-for="Mobile" type="tel" class="all-input"><br>
-			<span asp-validation-for="Mobile" class="text-warning"></span>
+<form asp-controller="account" asp-action="Login">
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="row border rounder-5 p-3 bg-white shadow box-area">
+            <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box" style="background: #0568fd">
+                <div class="featured-image mb-3">
+                    <img style="width: 250px;" src="~/Image/Site/Login.png" class="img-fluid">
+                </div>
+                <p class="text-white fs-2" style="font-weight: 600;">Login</p>
+                <small class="text-white text-wrap text-center" style="width: 17rem;">Lorem ipsum dolor sit amet consectetur, adipisicing</small>
+            </div>
 
-			<label asp-for="Password"></label>
-			<input asp-for="Password" type="password" class="all-input"><br>
-			<span asp-validation-for="Password" class="text-warning"></span>
+            <div class="col-md-6 right-box">
+                <div class="row align-items-center">
+                    <div class="header-text mb-4 text-center">
+                        <h2>Login Page</h2>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input asp-for="Mobile" class="form-control form-control-lg bg-light fs6" placeholder="Phone Number">
+                    </div>
+                    <div class="input-group mb-1">
+                        <input asp-for="Password" class="form-control form-control-lg bg-light fs6" placeholder="Your password">
+                    </div>
+                    <div class="input-group mb-5 d-flex justify-content-between">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="formCheck">
+                            <label for="formCheck" class="form-check-label text-secondary"><small>Remember Me</small></label>
+                        </div>
+                        <div class="forgot">
+                            <small><a href="#">Forgot password</a></small>
+                        </div>
+                    </div>
+                    <div class="inpute-group mb-3">
+                        <button type="submit" class="btn btn-lg btn-primary w-100 fs-6">Login</button>
+                    </div>
+                    <div class="inpute-group mb-3">
+                        <button class="btn btn-lg btn-light w-100 fs-6"><img src="~/Image/Site/Google-Logo.png" style="width:20px" class="me-2"><small>Sign In With Google</small></button>
+                    </div>
+                    <div class="row">
+                        <small>Don't have account? <a asp-action="Register">Sign Up</a></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
-			<button type="submit" class="submit2">ورود</button>
-
-			<p><a class="forgot" href="#ForgotPassword">Forgot password?</a></p><br>
-			<p class="signuptext"><a class="signup" asp-action="Register">sign up</a>آیا ثبت نام نکرده اید؟</p>
-
-		</div>
-	</form>
-
-</div>
 

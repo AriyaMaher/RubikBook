@@ -4,10 +4,10 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<div class="hero"></div>
+<video autoplay muted loop class="hero">
+    <source src="~/Image/Site/LibraryVideo.mp4"/>
+</video>
 
-@*Products Partial*@
-<partial name="ProductsPartial.cshtml" model="@Model.Products" />
 
 
 @*Products Slider Partial*@
@@ -20,6 +20,22 @@
         </div>
     </div>
 </div>
+
+
+
+
+<div class="container">
+    <h4 class="add-title text-center">لیست جدید کتاب ها</h4>
+    <hr class="hr-2">
+</div>
+@*Products Partial*@
+<partial name="ProductsPartial.cshtml" model="@Model.Products" />
+<div class="container mt-md-3">
+    <a asp-controller="Home" asp-action="AllProducts" class="btn-product btn-success"><span class="icon-arrow-left"></span>  مشاهده تمامی کتاب ها</a>
+</div>
+
+
+
 
 
 @*Banner*@

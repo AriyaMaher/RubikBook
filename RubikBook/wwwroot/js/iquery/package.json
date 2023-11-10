@@ -1,0 +1,30 @@
+{
+  "name": "iquery",
+  "version": "0.0.2",
+  "description": "Generate your where condition SQL",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/JacksonTian/iquery.git"
+  },
+  "devDependencies": {
+    "should": "*",
+    "mocha": "*",
+    "jscover": "*"
+  },
+  "keywords": [
+    "SQL",
+    "WHERE"
+  ],
+  "author": "Jackson Tian",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+  }
+}

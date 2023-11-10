@@ -28,7 +28,6 @@ public class DatabaseContext : DbContext
     public DbSet<Product> Products { get; set; }
     public DbSet<Author> Authors { get; set; }
     public DbSet<Publisher> Publishers { get; set; }
-    public DbSet<AgeCategory> AgeCategorys { get; set; }
     public DbSet<Factor> Factors { get; set; }
     public DbSet<FactorDetail> FactorDetails { get; set; }
 }

@@ -17,7 +17,7 @@ body {
 
 .sidebar {
     position: fixed;
-    background-color: rgb(32, 58, 36);
+    background-color: #043330;
     border-radius: 5px 0 0 5px;
     min-height: 100svh;
     max-height: 100svh;
@@ -26,39 +26,43 @@ body {
     bottom: 0;
     padding: 5px;
     direction: rtl;
+    width: 24%;
+    text-align: center;
 }
 
     .sidebar a {
         color: white !important;
         margin-top: 3px;
-        display: block;
+        display: inline-block;
         padding: 5px 2px;
         text-decoration: none;
         transition: 0.3s;
-        font-size:19px
+        font-size: 17px;
     }
 
         .sidebar a span {
-            color: orange;
+            color: #00d6ff;
             margin-left: 3px;
         }
 
-        .sidebar a:hover {
+/*        .sidebar a:hover {
             cursor: pointer;
-            color: orange !important;
-        }
+            color: #08ea9e !important;
+            padding-right:10px;
+        }*/
 
 
-thead tr , tbody tr {
-    text-align:center;
+thead tr, tbody tr {
+    text-align: center;
 }
 
 .form-group label {
     float: right;
-    margin-top:20px;
+    margin-top: 20px;
 }
 
-.form-group input, .form-group select{
+.form-group input, .form-group select {
     text-align: right;
 }
+
 

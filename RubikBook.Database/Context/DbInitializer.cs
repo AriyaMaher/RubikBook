@@ -55,20 +55,6 @@ namespace RubikBook.Database.Context
 
             }; _modelBuilder.Entity<Author>().HasData(author);
 
-
-            List<AgeCategory> ageCategories = new List<AgeCategory>()
-            {
-                new AgeCategory() {Id = 1, AgeCategoryName = "کودک"},
-                new AgeCategory() {Id = 2, AgeCategoryName = "نوجوان"},
-                new AgeCategory() {Id = 3, AgeCategoryName = "جوان"},
-                new AgeCategory() {Id = 4, AgeCategoryName = "بزرگسال"},
-            }; _modelBuilder.Entity<AgeCategory>().HasData(ageCategories);
-
-            Publisher publisher = new Publisher()
-            {
-                Id = 1,
-                PublisherName = "پرتقال",
-            }; _modelBuilder.Entity<Publisher>().HasData(publisher);
         }
     }
 }

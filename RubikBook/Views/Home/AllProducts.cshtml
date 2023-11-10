@@ -1,0 +1,11 @@
+﻿@model RubikBook.Core.ViewModels.AllViewModel
+@{
+    ViewData["Title"] = "AllProducts";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+
+<partial name="ProductsPartial.cshtml" model="@Model.Products" />
+
+

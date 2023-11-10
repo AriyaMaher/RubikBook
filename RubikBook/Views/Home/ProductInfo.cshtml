@@ -7,7 +7,7 @@
 
 
 
-  <div class="container con-bg dir"> 
+<form asp-controller="profile" asp-action="AddtoShoppingcart" class="container con-bg dir">
     <div class="row">
 
         @{
@@ -23,35 +23,49 @@
 
 
 
+            <div class="col-md-5 con-bg-img">
+                <img class="pr-img align align-items-center" src="~/Image/Product/@Model.productInfo.Img" alt="@Model.productInfo.Img">
+            </div>
 
-      <div class="col-md-5 con-bg-img">
-        <img class="pr-img align align-items-center" src="~/Image/Product/@Model.productInfo.Img" alt="@Model.productInfo.Img">
-      </div>
+            <div class="col-md-7 dir pr-5">
+                <h5 class="text-center">کتاب @Model.productInfo.ProductName</h5>
+                <div class="hr-2"></div><br>
+                <h6 class="float-right text-secondary ">نویسنده: <span class="text-dark"> @Model.productInfo.Author.AuthorName</span></h6><br><br>
+                <h6 class="float-right text-secondary ">دسته بندی: <span class="text-dark">@Model.productInfo.Group.GroupName</span></h6><br><br>
+                <h6 class="float-right text-secondary ">انتشارات: <span class="text-dark">@Model.productInfo.Publisher.PublisherName</span></h6><br><br>
+                <h6 class="float-right text-secondary "> نوع جلد: <span class="text-dark">@Model.productInfo.CoverType</span></h6><br><br>
+                <h6 class="float-right text-secondary "> موجودی: <span class="text-dark">@Model.productInfo.Inventory</span></h6><br><br>
 
-      <div class="col-md-7 dir pr-5">
-        <h5 class="text-center">کتاب @Model.productInfo.ProductName</h5>
-        <div class="hr-2"></div><br>
-        <h6 class="float-right text-secondary con-bg-small">نویسنده: <span class="text-dark"> @Model.productInfo.Author.AuthorName</span></h6><br><br>
-        <h6 class="float-right text-secondary con-bg-small">دسته بندی: <span class="text-dark">@Model.productInfo.Group.GroupName</span></h6><br><br>
-        <h6 class="float-right text-secondary con-bg-small">انتشارات: <span class="text-dark">@Model.productInfo.Publisher.PublisherName</span></h6><br><br>
-        <h6 class="float-right text-secondary con-bg-small"> نوع جلد: <span class="text-dark">@Model.productInfo.CoverType</span></h6><br><br>
-        <h6 class="float-right text-secondary con-bg-small"> موجودی: <span class="text-dark">@Model.productInfo.Inventory</span></h6><br><br>
-        <h6 class="float-right text-secondary con-bg-small"> تعداد صفحات: <span class="text-dark">@Model.productInfo.TotalPages</span></h6><br><br>
+                <input asp-for="shopping.ProductId" value="@Model.shopping.ProductId" readonly hidden />
+                <input asp-for="shopping.UserId" value="@Model.shopping.UserId" readonly hidden />
 
-        <s class="text-danger fw-bold">@price.ToString("n0")</s>
-        <span class="bg-danger rounded-circle p-1 pt-2 pb-2 small fw-bold text-white">@Model.productInfo.SellOff%</span>
-        <h4 class="text-center text-dark"> قیمت: <span class="text-success">@finalPrice.ToString("n0")</span></h4>
+                <s class="text-danger fw-bold">@price.ToString("n0")</s>
+                <span class="bg-danger rounded-circle p-1 pt-2 pb-2 small fw-bold text-white">@Model.productInfo.SellOff%</span>
+                <h4 class="text-center text-dark"> قیمت: <span class="text-success">@finalPrice.ToString("n0")</span></h4>
 
-        <hr>
-        <p style="font-size: 13px; text-align:right" class="text-secondary">درخواست مرجوع کردن کالا در گروه دفتر با دلیل "انصراف از خرید" تنها در صورتی قابل تایید است که کالا در شرایط اولیه باشد.</p>
+                <hr>
+                <p style="font-size: 13px; text-align:right" class="text-secondary">درخواست مرجوع کردن کالا در گروه دفتر با دلیل "انصراف از خرید" تنها در صورتی قابل تایید است که کالا در شرایط اولیه باشد.</p>
 
+                @{
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        <form asp-asp-controller="Profile" asp-action="AddtoShoppingCart">
+                        <input asp-for="shopping.ProductId" value="@Model.shopping.ProductId" readonly hidden />
+                        <input asp-for="shopping.UserId" value="@Model.shopping.UserId" readonly hidden />
+                            <button class=" btn btn-success btn-shopping">افزودن به سبد خرید    <span class="icon-shopping-bag"></span></button>
+                        </form>
+                    }
+                    else
+                    {
+                        <a asp-controller="account" asp-action="Login" class="btn btn-success btn-shopping" >ورود و ثبت نام    <span class="icon-arrow-left"></span></a>
 
-        <a class="btn btn-success btn-shopping " href="#">افزودن به سبد خرید    <span class="icon-shopping-bag"></span></a>
-
-      </div>
+                    }
+                }  
+            </div>
+      
 
     </div>
-  </div>
+  </form>
 
 
 

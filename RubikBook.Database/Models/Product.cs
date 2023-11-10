@@ -37,10 +37,6 @@ public class Product
     [Display(Name = "نوع جلد")]
     public string? CoverType { get; set; }
 
-    [Display(Name ="رده سنی")]
-    [Required(ErrorMessage ="انتخاب رده سنی الزامی است")]
-    public int AgeCategoryId { get; set; }
-
     [Display(Name="درباره محصول")]
     [MaxLength(125)]
     public string? Des { get; set; }
@@ -74,6 +70,4 @@ public class Product
     [ForeignKey("PublisherId")]
     public virtual Publisher? Publisher { get; set; }
 
-    [ForeignKey("AgeCategoryId")]
-    public virtual AgeCategory? AgeCategory { get; set; }
 }

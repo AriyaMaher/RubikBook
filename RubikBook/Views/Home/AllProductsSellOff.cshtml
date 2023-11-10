@@ -1,0 +1,12 @@
+﻿@model RubikBook.Core.ViewModels.AllViewModel
+@{
+    ViewData["Title"] = "AllProductsSellOff";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div class="container">
+    <h3 class="text-center"><span class="text-success"> فروش</span> ویژه</h3>
+    <hr class="hr-2">
+</div>
+<partial name="ProductsPartial" model="Model.ProductsSellOff" />
+

@@ -1,0 +1,19 @@
+﻿@model IEnumerable<RubikBook.Database.Models.Group>
+
+<!--book new add-->
+<div class="container">
+    <h4 class="add-title text-center">لیست تمامی دسته بندی ها</h4>
+    <hr class="hr-2">
+</div>
+
+
+
+@foreach (var item in Model)
+{
+    <a asp-controller="home" asp-action="productsByGroup" asp-route-id="@item.Id" class="btn btn-outline-success rounded-5 m-1">
+        @*<span class="icon-book"></span*@ @item.GroupName 
+    </a>
+}
+
+
+

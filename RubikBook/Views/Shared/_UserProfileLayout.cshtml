@@ -7,19 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@ViewBag.Title</title>
 
+    <link rel="stylesheet" href="~/fonts/icomoon/style.css">
     <link href="~/Lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/Panelstyle.css" rel="stylesheet" />
     <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="sidebar col-md-3 col-6">
-        <a asp-controller="Panel" asp-action="Index"><span class="fa fa-home fa-lg"></span>صفحه هوم</a>
-        <a><span class="fa fa-shopping-bag fa-lg"></span>سبد خرید</a>
-        <a><span class="fa fa-shopping-bag fa-lg"></span>سفارشات</a>
-        <a><span class="fa fa-gears fa-lg"></span>تنظیمات</a>
-        <a><span class="fa fa-headphones fa-lg"></span>پشتیبانی</a>
-        <a asp-controller="Account" asp-action="logout"><span class="fa fa-sign-out fa-lg"></span>خروج</a>
+    <div class="sidebar col-6 p-4">
+        <h3 class="text-center text-white rounded mb-4">پنل کاربری </h3><hr class="text-white" />
+
+        <a class="btn btn-success mt-2 col-5" asp-controller="home" asp-action="Index"><span class="fa fa-home fa-lg"></span><br />صفحه هوم</a>
+        <a class="btn btn-success mt-2 col-5" asp-controller="profile" asp-action="ShoppingCart"><span class="fa fa-shopping-bag fa-lg"></span><br />سفارشات</a>
+        <a class="btn btn-success mt-2 col-5"><span class="fa fa-gears fa-lg"></span><br />تنظیمات</a>
+        <a class="btn btn-success mt-2 col-5"><span class="fa fa-headphones fa-lg"></span><br />پشتیبانی</a>
+        <a class="btn btn-danger mt-3 col-10" href="~/account/logout"><span class="fa fa-sign-out fa-lg"></span>خروج</a>
     </div>
+
+
+
     <div class="col-md-9 col-6">
         @RenderBody()
     </div>

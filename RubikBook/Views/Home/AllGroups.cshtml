@@ -1,0 +1,14 @@
+﻿@model RubikBook.Core.ViewModels.AllViewModel
+
+@{
+    ViewData["Title"] = "AllGroups";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div class="container">
+    <div class="col-12 text-center">
+        <partial name="GroupsPartial.cshtml" model="Model.Groups" />
+    </div>
+</div>
+
+

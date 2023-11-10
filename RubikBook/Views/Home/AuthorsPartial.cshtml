@@ -1,0 +1,18 @@
+﻿@model IEnumerable<RubikBook.Database.Models.Author>
+
+
+<!--book new add-->
+<div class="container">
+    <h4 class="add-title text-center">لیست تمامی نویسندگان</h4>
+    <hr class="hr-2">
+</div>
+
+
+
+@foreach (var item in Model)
+{
+    <a asp-controller="home" asp-action="productsByAuthor" asp-route-id="@item.Id" class="btn btn-outline-success rounded-5 m-1">
+        @*<span class="icon-book"></span*@ @item.AuthorName
+    </a>
+}
+

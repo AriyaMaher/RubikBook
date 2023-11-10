@@ -36,4 +36,6 @@ public class Factor
 
     [ForeignKey(nameof(UserId))]
     public virtual User User { get; set; }  
+
+    public virtual ICollection<FactorDetail>? FactorDetails { get; set; }
 }

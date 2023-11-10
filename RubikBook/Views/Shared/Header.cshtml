@@ -1,79 +1,78 @@
 ﻿@model RubikBook.Core.ViewModels.AllViewModel
+
 <header>
- <div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu site-navbar-target">
         <div class="site-mobile-menu-header">
-          <div class="site-mobile-menu-close mt-3">
-            <span class="icon-close2 js-menu-toggle"></span>
-          </div>
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icon-close2 js-menu-toggle"></span>
+            </div>
         </div>
         <div class="site-mobile-menu-body"></div>
-      </div>
+    </div>
 
 
-      <div class="top-bar">
+    <div class="top-bar">
         <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <a href="#" class=""><span class="mr-2  icon-envelope-open-o"></span> <span class="d-none d-md-inline-block">info@yourdomain.com</span></a>
-              <span class="mx-md-2 d-inline-block"></span>
-              <a href="#" class=""><span class="mr-2  icon-phone"></span> <span class="d-none d-md-inline-block">1+ (234) 5678 9101</span></a>
+            <div class="row">
+                <div class="col-12">
+                    <a href="#" class=""><span class="mr-2  icon-envelope-open-o"></span> <span class="d-none d-md-inline-block">info@yourdomain.com</span></a>
+                    <span class="mx-md-2 d-inline-block"></span>
+                    <a href="#" class=""><span class="mr-2  icon-phone"></span> <span class="d-none d-md-inline-block">1+ (234) 5678 9101</span></a>
 
 
-              <div class="float-right">
+                    <div class="float-right">
 
-                <a href="#" class=""><span class="mr-2  icon-instagram"></span> <span class="d-none d-md-inline-block">Instagram</span></a>
-                <span class="mx-md-2 d-inline-block"></span>
-                <a href="#" class=""><span class="mr-2  icon-telegram"></span> <span class="d-none d-md-inline-block">Telegram</span></a>
+                        <a href="#" class=""><span class="mr-2  icon-instagram"></span> <span class="d-none d-md-inline-block">Instagram</span></a>
+                        <span class="mx-md-2 d-inline-block"></span>
+                        <a href="#" class=""><span class="mr-2  icon-telegram"></span> <span class="d-none d-md-inline-block">Telegram</span></a>
 
-              </div>
+                    </div>
+
+                </div>
 
             </div>
-
-          </div>
 
         </div>
-      </div>
+    </div>
 
-      <header class="site-navbar js-sticky-header site-navbar-target mb-4" role="banner">
+    <header class="site-navbar js-sticky-header site-navbar-target mb-4" role="banner">
 
         <div class="container">
-          <div class="row align-items-center position-relative">
+            <div class="row align-items-center position-relative">
 
 
-            <div class="site-logo">
-              <a href="index.html" class="text-black logo-text"><img class="pnglogo" src="~/Image/Site/Logo.png" alt="">Rubik Book</a>
-            </div>
-
-            <div class="col-12">
-              <nav class="site-navigation text-right ml-auto " role="navigation">
-
-                <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
-                  <li><a href="#home-section" class="nav-link">صفحه اصلی</a></li>
-@*                  <li><a href="#services-section" class="nav-link">کتاب های برگزیده</a></li>*@
+                <div class="site-logo">
+                    <a asp-controller="Home" asp-action="Index" class="text-black logo-text"><img class="pnglogo" src="~/Image/Site/Logo.png" alt="">Rubik Book</a>
+                </div>
 
 
-                  <li class="has-children">
-                    <a href="#about-section" class="nav-link">دسته بندی کتاب ها</a>
-                    <ul class="dropdown arrow-top">
-                      <li><a href="#team-section" class="nav-link">Team</a></li>
-                      <li><a href="#pricing-section" class="nav-link">Pricing</a></li>
-                      <li><a href="#faq-section" class="nav-link">FAQ</a></li>
-                      <li class="has-children">
-                        <a href="#">More Links</a>
-                        <ul class="dropdown">
-                          <li><a href="#">Menu One</a></li>
-                          <li><a href="#">Menu Two</a></li>
-                          <li><a href="#">Menu Three</a></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
 
-                  <li><a href="#why-us-section" class="nav-link">چرا ما</a></li>
+                <div style="z-index:100;" class="col-12">
+                    <nav class="site-navigation text-right ml-auto " role="navigation">
 
-                  <li><a href="#testimonials-section" class="nav-link">تخفیف ها</a></li>
-                  <li><a href="#blog-section" class="nav-link">بلاگ</a></li>
-                  <li><a href="#contact-section" class="nav-link">تماس با ما</a></li>
+                        <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
+                            <li><a asp-controller="Home" asp-action="Index" class="nav-link">صفحه اصلی</a></li>
+                            @*                  <li><a href="#services-section" class="nav-link">کتاب های برگزیده</a></li>*@
+
+
+                            <li class="has-children">
+                                <a href="#about-section" class="nav-link">دسته بندی کتاب ها</a>
+                                <ul class="dropdown arrow-top">
+                                    <partial name="~/views/home/HeaderGroupsPartial.cshtml" model="Model.GroupsForHeader" />
+                                </ul>
+                            </li>
+
+
+                            <li class="has-children">
+                                <a href="#about-section" class="nav-link">نویسندگان</a>
+                                <ul class="dropdown arrow-top">
+                                    <partial name="~/views/home/HeaderAuthorsPartial.cshtml" model="Model.AuthorsForHeader" />
+                                </ul>
+                            </li>
+
+
+
+                            <li><a asp-controller="home" asp-action="AllProductsSellOff" class="nav-link">تخفیف ها</a></li>
                             @{
                                 if (User.Identity.IsAuthenticated)
                                 {
@@ -84,18 +83,48 @@
                                     <li><a asp-action="login" asp-controller="account" class="nav-link"><span class="mr-2  icon-user"></span>ثبت نام / ورود</a></li>
                                 }
                             }
-                </ul>
-              </nav>
+
+                        </ul>
+                    </nav>
+
+
+                </div>
+
+                <div class="toggle-button d-inline-block d-lg-none"><a href="#" class="site-menu-toggle py-5 js-menu-toggle text-black"><span class="icon-menu h3"></span></a></div>
+
+
+
 
             </div>
-
-            <div class="toggle-button d-inline-block d-lg-none"><a href="#" class="site-menu-toggle py-5 js-menu-toggle text-black"><span class="icon-menu h3"></span></a></div>
-
-          </div>
         </div>
 
-      </header>
+        <div class="container">
+            <form asp-controller="Home" asp-action="SearchProduct" method="POST">
+                <div class="input-group mb-3">
+                    <input style="text-align:right;outline: none !important;" type="text" class="form-control" id="searchString" name="searchString" placeholder="...نام کتاب مورد نظرتون رو وارد کنید" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button style="background-color:#3c6d56; color:white;" class="btn text-end" value="Search" type="submit"><span class="icon icon-search"></span></button>
+                    </div>
+                </div>
+            </form>
+        </div>
 
 
+    </header>
 
 </header>
+
+
+
+<!--jquery && ajax-->
+<script src="~/Lib/jquery/dist/jquery.min.js"></script>
+<script src="~/Lib/jquery/src/ajax.js"></script>
+<script src="~/Lib/jquery-ui/jquery-ui.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#searchString").autocomplete({
+            source: 'api/postapi/search'
+        });
+    });
+</script>

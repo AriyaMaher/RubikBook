@@ -5,34 +5,48 @@
 	Layout = "~/Views/Shared/_AccountLayout.cshtml";
 }
 
-<div class="container">
+<form asp-controller="account" asp-action="Register">
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="row border rounder-5 p-3 bg-white shadow box-area">
+            <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box" style="background: #0568fd">
+                <div class="featured-image mb-3">
+                    <img style="width: 250px;" src="~/Image/Site/Register.png" class="img-fluid">
+                </div>
+                <p class="text-white fs-2" style="font-weight: 600;">Sign Up</p>
+                <small class="text-white text-wrap text-center" style="width: 17rem;">Lorem ipsum dolor sit amet consectetur, adipisicing</small>
+            </div>
 
-	<form asp-controller="account" asp-action="register" class="login-form">
-		<h3 style="color: rgb(23, 82, 211);"> Sign Up</h3>
+            <div class="col-md-6 right-box">
+                <div class="row align-items-center">
+                    <div class="header-text mb-4 text-center">
+                        <h2>Register Page</h2>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input asp-for="Mobile" class="form-control form-control-lg bg-light fs6" placeholder="Phone Number">
+                    </div>
+                    <span asp-validation-for="Mobile" class="text-warning"></span> <!--Error-->
+                    <div class="input-group mb-3">
+                        <input asp-for="Password" class="form-control form-control-lg bg-light fs6" placeholder="Your Password">
+                    </div>
+                    <span asp-validation-for="Password" class="text-warning"></span>
+                    <div class="input-group mb-1">
+                        <input asp-for="RePassword" class="form-control form-control-lg bg-light fs6" placeholder="RePassword">
+                    </div>
+                    <span asp-validation-for="RePassword" class="text-warning"></span>
 
-		<div class="center-item">
-
-			<label asp-for="Mobile"></label>
-			<input asp-for="Mobile" type="tel" class="all-input"><br>
-			<span asp-validation-for="Mobile" class="text-warning"></span>
-
-			<label asp-for="Password"></label>
-			<input asp-for="Password" type="password" class="all-input"><br>
-			<span asp-validation-for="Password" class="text-warning"></span>
-
-
-			<label asp-for="RePassword"></label>
-			<input asp-for="RePassword" type="password" class="all-input"><br><br>
-			<span asp-validation-for="RePassword" class="text-warning"></span>
-
-
-			<button type="submit" class="submit2">ثبت نام</button>
-
-			<p class="signuptext"><a class="signup" asp-action="Login">Login</a>آیا میخواهید ورود کنید؟</p>
-
-		</div>
-	</form>
-
-</div>
+                    <div class="inpute-group mb-3 mt-3">
+                        <button type="submit" class="btn btn-lg btn-primary w-100 fs-6">Sign Up</button>
+                    </div>
+                    <div class="inpute-group mb-3">
+                        <button class="btn btn-lg btn-light w-100 fs-6"><img src="~/Image/Site/Google-Logo.png" style="width:20px" class="me-2"><small>Sign Up With Google</small></button>
+                    </div>
+                    <div class="row">
+                        <small>Do you have account? <a asp-action="Login">Login</a></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
 

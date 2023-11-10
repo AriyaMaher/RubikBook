@@ -1,0 +1,10 @@
+﻿@model IEnumerable<RubikBook.Database.Models.Author>
+
+@foreach (var item in Model)
+{
+    <li><a asp-controller="Home" asp-action="productsByAuthor" asp-route-id="@item.Id" class="nav-link">@item.AuthorName</a></li>
+
+}
+
+<li><a style="color:#28a745  !important" asp-controller="Home" asp-action="AllAuthors" class="nav-link text">...دسته بندی های بیشتر</a></li>
+

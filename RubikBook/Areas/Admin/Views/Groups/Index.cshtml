@@ -1,55 +1,66 @@
 ﻿@model IEnumerable<RubikBook.Database.Models.Group>
 
 @{
-	ViewData["Title"] = "Index";
-	Layout = "~/Areas/Admin/Views/Shared/_PanelLayout.cshtml";
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_PanelLayout.cshtml";
 }
 
-<h2 class="p-2">دسته بندی ها</h2>
+<div class="container-sm">
+    <h2 class="p-2">دسته بندی ها</h2>
 
-<div>
 
-	<p>
-		<a asp-action="Create" class="btn btn-success ms-2"> <span class="fa fa-plus-circle fa-lg"></span> افزودن گروه جدید</a>
-	</p>
-	<table class="table table-hover table-striped">
-		<thead>
-			<tr>
-				<th>
-					@Html.DisplayNameFor(model => model.GroupName)
-				</th>
-				@*            <th>
-				@Html.DisplayNameFor(model => model.GroupDes)
-				</th>*@
-				<th>
-					@Html.DisplayNameFor(model => model.NotShow)
-				</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			@foreach (var item in Model)
-			{
-				<tr>
-					<td>
-						@Html.DisplayFor(modelItem => item.GroupName)
-					</td>
-					@*            <td>
-				@Html.DisplayFor(modelItem => item.GroupDes)
-				</td>*@
-					<td>
-						@Html.DisplayFor(modelItem => item.NotShow)
-					</td>
-					<td>
-						<a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"> <span class="fa fa-edit"></span>ویرایش</a> |
-						<a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success"> <span class=""></span>جزئیات</a> |
-						<a data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="Delete('@(item.Id)')" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"> <span class="fa fa-trash"></span></a>
 
-					</td>
-				</tr>
-			}
-		</tbody>
-	</table>
+    <p>
+        <a asp-action="Create" class="btn btn-success ms-2"> <span class="fa fa-plus-circle fa-lg"></span> افزودن گروه جدید</a>
+    </p>
+
+    <form asp-controller="Products" asp-action="Index" method="POST">
+        <div class="input-group mb-3">
+            <input style="text-align:right;" type="text" class="form-control" id="searchString" name="searchString" placeholder="...نام کتاب را وارد کنید" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-primary text-end" value="Search" type="submit"><span class="fa fa-search"></span></button>
+            </div>
+        </div>
+    </form>
+</div>
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GroupName)
+            </th>
+            @*            <th>
+            @Html.DisplayNameFor(model => model.GroupDes)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.NotShow)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GroupName)
+                </td>
+                @*            <td>
+            @Html.DisplayFor(modelItem => item.GroupDes)
+            </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.NotShow)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"> <span class="fa fa-edit"></span>ویرایش</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success"> <span class=""></span>جزئیات</a> |
+                    <a data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="Delete('@(item.Id)')" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"> <span class="fa fa-trash"></span></a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 </div>
 
 
@@ -63,21 +74,21 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				@*<h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>*@
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div id="modalBody" class="modal-body">
-				...
-			</div>
-			@*  <div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-			<button type="button" class="btn btn-primary">Save changes</button>
-			</div>*@
-		</div>
-	</div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                @*<h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>*@
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="modalBody" class="modal-body">
+                ...
+            </div>
+            @*  <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+            </div>*@
+        </div>
+    </div>
 </div>
 
 
@@ -87,24 +98,24 @@
 
 
 
-	const myModal = document.getElementById('myModal')
-	const myInput = document.getElementById('myInput')
+    const myModal = document.getElementById('myModal')
+    const myInput = document.getElementById('myInput')
 
-	myModal.addEventListener('shown.bs.modal', () => {
-		myInput.focus()
-	})
+    myModal.addEventListener('shown.bs.modal', () => {
+        myInput.focus()
+    })
 
 
-	function Delete(groupId) {
-		$.ajax({
-			url: '/Admin/Groups/Delete',
-			type: 'get',
-			data: {/*controller parameter*/  id: groupId /*send parameter*/ },
-			success: (result) => {
-				document.getElementById('modalBody').innerHTML = result;
-			}
-		})
-	}
+    function Delete(groupId) {
+        $.ajax({
+            url: '/Admin/Groups/Delete',
+            type: 'get',
+            data: {/*controller parameter*/  id: groupId /*send parameter*/ },
+            success: (result) => {
+                document.getElementById('modalBody').innerHTML = result;
+            }
+        })
+    }
 
 
 

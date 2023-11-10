@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using RubikBook.Core.Interface;
 using RubikBook.Database.Models;
+using RubikBook.Database.Context;
 
 namespace RubikBook.Areas.Admin.Controllers;
 
@@ -11,28 +12,31 @@ public class ProductsController : Controller
 {
     IProduct _product;
     IGroup _group;
-    IAgeCategory _ageCategory;
     IAuthor _author;
     IPublisher _publisher;
-    public ProductsController(IProduct product, IGroup group, IAgeCategory ageCategory, IAuthor author, IPublisher publisher)
+    public ProductsController(IProduct product, IGroup group, IAuthor author, IPublisher publisher)
     {
         _product = product;
         _group = group;
-        _ageCategory = ageCategory;
         _author = author;
         _publisher = publisher;
     }
 
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(string searchString = null)
     {
         var products = await _product.GetProducts();
+        if (!string.IsNullOrEmpty(searchString))
+        {
+            var products1 = await _product.GetProducts(searchName:searchString);
+            return View(products1);
+        }
         return View(products);
     }
+
 
     public async Task<IActionResult> Create()
     {
         ViewBag.GroupId = new SelectList(await _group.GetGroups(), "Id", "GroupName");
-        ViewBag.AgeCategoryId = new SelectList(await _ageCategory.GetAgeCategories(), "Id", "AgeCategoryName");
         ViewBag.AuthorId = new SelectList(await _author.GetAuthors(), "Id", "AuthorName");
         ViewBag.PublisherId = new SelectList(await _publisher.GetPublishers(), "Id", "PublisherName");
 
@@ -53,7 +57,6 @@ public class ProductsController : Controller
             ModelState.AddModelError("img", "خطا در ثبت محصول");
         }
         ViewBag.GroupId = new SelectList(await _group.GetGroups(), "Id", "GroupName");
-        ViewBag.AgeCategoryId = new SelectList(await _ageCategory.GetAgeCategories(), "Id", "AgeCategoryName");
         ViewBag.AuthorId = new SelectList(await _author.GetAuthors(), "Id", "AuthorName");
         ViewBag.Publisher = new SelectList(await _publisher.GetPublishers(), "Id", "PublisherName");
         ViewBag.ProductId = Guid.NewGuid();
@@ -64,7 +67,6 @@ public class ProductsController : Controller
 
         var product = await _product.GetProduct(id);
         ViewBag.GroupId = (await _group.GetGroups(), "Id", "GroupName");
-        ViewBag.AgeCategoryId = (await _ageCategory.GetAgeCategories(), "Id", "AgeCategoryName");
         ViewBag.AuthorId = (await _author.GetAuthors(), "Id", "AuthorName");
         ViewBag.PublisherId = (await _publisher.GetPublishers(), "Id", "PublisherName");
         if (product != null)
@@ -97,7 +99,6 @@ public class ProductsController : Controller
     {
         var product = await _product.GetProduct(id);
         ViewBag.GroupId = new SelectList(await _group.GetGroups(), "Id", "GroupName");
-        ViewBag.AgeCategoryId = new SelectList(await _ageCategory.GetAgeCategories(), "Id", "AgeCategoryName");
         ViewBag.AuthorId = new SelectList(await _author.GetAuthors(), "Id", "AuthorName");
         ViewBag.PublisherId = new SelectList(await _publisher.GetPublishers(), "Id", "PublisherName");
         if (product != null)
@@ -118,7 +119,9 @@ public class ProductsController : Controller
 				return RedirectToAction(nameof(Details));
 			}
         }
-        ModelState.AddModelError("img","خطا در ثبت محصول" );
+        ModelState.AddModelError("img","خطا در ادیت محصول" );
         return View(product);
     }
+
+
 }

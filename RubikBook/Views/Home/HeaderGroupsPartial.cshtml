@@ -1,0 +1,18 @@
+﻿@model IEnumerable<RubikBook.Database.Models.Group>
+
+    @foreach (var item in Model)
+{
+    <li><a asp-controller="Home" asp-action="productsByGroup" asp-route-id="@item.Id" class="nav-link">@item.GroupName</a></li>
+
+}
+
+<li><a style="color:#28a745  !important"  asp-controller="Home" asp-action="AllGroups" class="nav-link text">...دسته بندی های بیشتر</a></li>
+
+@*    <li class="has-children">
+        <a href="#">More Links</a>
+        <ul class="dropdown">
+            <li><a href="#">Menu One</a></li>
+            <li><a href="#">Menu Two</a></li>
+            <li><a href="#">Menu Three</a></li>
+        </ul>
+    </li>*@

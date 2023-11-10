@@ -22,53 +22,6 @@ namespace RubikBook.Database.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("RubikBook.Database.Models.AgeCategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("AgeCategoryName")
-                        .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
-
-                    b.Property<bool>("NotShow")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AgeCategorys");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AgeCategoryName = "کودک",
-                            NotShow = false
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AgeCategoryName = "نوجوان",
-                            NotShow = false
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AgeCategoryName = "جوان",
-                            NotShow = false
-                        },
-                        new
-                        {
-                            Id = 4,
-                            AgeCategoryName = "بزرگسال",
-                            NotShow = false
-                        });
-                });
-
             modelBuilder.Entity("RubikBook.Database.Models.Author", b =>
                 {
                     b.Property<int>("Id")
@@ -224,9 +177,6 @@ namespace RubikBook.Database.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("AgeCategoryId")
-                        .HasColumnType("int");
-
                     b.Property<int>("AuthorId")
                         .HasColumnType("int");
 
@@ -269,8 +219,6 @@ namespace RubikBook.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AgeCategoryId");
-
                     b.HasIndex("AuthorId");
 
                     b.HasIndex("GroupId");
@@ -299,14 +247,6 @@ namespace RubikBook.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Publishers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            NotShow = false,
-                            PublisherName = "پرتقال"
-                        });
                 });
 
             modelBuilder.Entity("RubikBook.Database.Models.Role", b =>
@@ -329,13 +269,13 @@ namespace RubikBook.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("5c4f7276-bc1e-49c9-b5a2-a65e596c74c5"),
+                            Id = new Guid("637fffd4-1beb-4602-81d9-3afd7815cf22"),
                             RoleName = "admin",
                             RoleTitle = "مدیر"
                         },
                         new
                         {
-                            Id = new Guid("3c0c114a-2f6f-488f-83cd-cbfaa0696532"),
+                            Id = new Guid("9bb8217b-c6b1-4797-8254-7f2464745f3a"),
                             RoleName = "user",
                             RoleTitle = "کاربر"
                         });
@@ -374,11 +314,11 @@ namespace RubikBook.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d1ec772e-8533-45a2-8c4f-247647f7222a"),
+                            Id = new Guid("e6651a3e-7ad7-42ce-ba7d-1fc10fa5b603"),
                             IsActive = true,
                             Mobile = "09115523293",
                             Password = "25-D5-5A-D2-83-AA-40-0A-F4-64-C7-6D-71-3C-07-AD",
-                            RoleId = new Guid("5c4f7276-bc1e-49c9-b5a2-a65e596c74c5"),
+                            RoleId = new Guid("637fffd4-1beb-4602-81d9-3afd7815cf22"),
                             code = 0
                         });
                 });
@@ -397,7 +337,7 @@ namespace RubikBook.Database.Migrations
             modelBuilder.Entity("RubikBook.Database.Models.FactorDetail", b =>
                 {
                     b.HasOne("RubikBook.Database.Models.Factor", "Factor")
-                        .WithMany()
+                        .WithMany("FactorDetails")
                         .HasForeignKey("FactorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -415,12 +355,6 @@ namespace RubikBook.Database.Migrations
 
             modelBuilder.Entity("RubikBook.Database.Models.Product", b =>
                 {
-                    b.HasOne("RubikBook.Database.Models.AgeCategory", "AgeCategory")
-                        .WithMany("products")
-                        .HasForeignKey("AgeCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("RubikBook.Database.Models.Author", "Author")
                         .WithMany("Products")
                         .HasForeignKey("AuthorId")
@@ -438,8 +372,6 @@ namespace RubikBook.Database.Migrations
                         .HasForeignKey("PublisherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("AgeCategory");
 
                     b.Navigation("Author");
 
@@ -459,14 +391,14 @@ namespace RubikBook.Database.Migrations
                     b.Navigation("Role");
                 });
 
-            modelBuilder.Entity("RubikBook.Database.Models.AgeCategory", b =>
-                {
-                    b.Navigation("products");
-                });
-
             modelBuilder.Entity("RubikBook.Database.Models.Author", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("RubikBook.Database.Models.Factor", b =>
+                {
+                    b.Navigation("FactorDetails");
                 });
 
             modelBuilder.Entity("RubikBook.Database.Models.Group", b =>

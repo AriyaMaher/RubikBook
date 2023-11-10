@@ -71,14 +71,13 @@ public class ProductService : IProduct
 		try
 		{
             var imgCode = product.Img;
-			string imgName = imgCode +".png";
 
-			string savePath = Path.Combine(imgPath, imgName);
+			string savePath = Path.Combine(imgPath, imgCode);
 			using (Stream stream = new FileStream(savePath, FileMode.Create))
 			{
 				await productImg.CopyToAsync(stream);
 			}
-			product.Img = imgName;
+			product.Img = imgCode;
 
             _context.Products.Update(product);
             await _context.SaveChangesAsync();
@@ -91,9 +90,9 @@ public class ProductService : IProduct
 
 	}
 
-	public async Task<List<Product>> GetProducts(bool? notShow = null,int? sellOff = null)
+	public async Task<List<Product>> GetProducts(bool? notShow = null,int? sellOff = null, string? searchName = null)
 	{
-		var products = _context.Products.Include(p=>p.Group).ToList();
+		var products = _context.Products.Include(p=>p.Group).Include(a=>a.Author).ToList();
 		if (notShow!=null)
 		{
 			products = products.Where(p => p.NotShow == notShow).ToList();
@@ -101,6 +100,10 @@ public class ProductService : IProduct
 		if (sellOff != null)
 		{
 			products = products.Where(p=>p.SellOff>=sellOff).ToList();
+		}
+		if (searchName != null)
+		{
+			products = products.Where(p => p.ProductName.Contains(searchName)).ToList();
 		}
 		return await Task.FromResult(products);
 	}
@@ -134,7 +137,7 @@ public class ProductService : IProduct
 
 	}
 
-	public async Task<List<Product>> GetProductsGroup(Guid productId)
+	public async Task<List<Product>> GetProductsGroup(Guid productId) //similar products
 	{
 		var product = await _context.Products.FindAsync(productId);
 		if (product == null)
@@ -144,4 +147,22 @@ public class ProductService : IProduct
 		return await Task.FromResult(products);
 	}
 
+    public async Task<List<Product>> GetProductsByGroup(int groupId)
+    {
+		var group = await _context.Groups.FindAsync(groupId);
+		if (group == null) return null;
+
+		var products = _context.Products.Include(g => g.Group).Include(a=>a.Author).Include(p=>p.Publisher).Where(i => i.GroupId == group.Id && i.NotShow == false).ToList();
+		return await Task.FromResult(products);
+
+    }
+
+    public async Task<List<Product>> GetProductsByAuthor(int authorId)
+    {
+        var author = await _context.Authors.FindAsync(authorId);
+		if (author == null) return null;
+
+		var products = _context.Products.Include(a => a.Author).Include(g => g.Group).Include(p => p.Publisher).Where(i => i.AuthorId == author.Id && i.NotShow == false).ToList();
+		return await Task.FromResult(products);
+    }
 }

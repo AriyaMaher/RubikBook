@@ -26,6 +26,9 @@
     <None Include="wwwroot\js\main.js" />
     <None Include="wwwroot\js\owl.carousel.min.js" />
     <None Include="wwwroot\js\popper.min.js" />
+    <None Include="wwwroot\lib\jquery-ui\external\jquery\jquery.js" />
+    <None Include="wwwroot\lib\jquery-ui\jquery-ui.js" />
+    <None Include="wwwroot\lib\jquery-ui\jquery-ui.min.js" />
     <None Include="wwwroot\scss\.DS_Store" />
     <None Include="wwwroot\scss\bootstrap\bootstrap-grid.scss" />
     <None Include="wwwroot\scss\bootstrap\bootstrap-reboot.scss" />
@@ -140,7 +143,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Data\" />
+    <Folder Include="Models\" />
     <Folder Include="wwwroot\Image\Product\" />
+    <Folder Include="wwwroot\lib\bootstrap\" />
+    <Folder Include="wwwroot\lib\bootstrap\dist\js\" />
   </ItemGroup>
 
 </Project>

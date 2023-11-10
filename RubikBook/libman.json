@@ -13,6 +13,10 @@
     {
       "library": "font-awesome@4.7.0",
       "destination": "wwwroot/Lib/font-awesome/"
+    },
+    {
+      "library": "jquery@3.7.1",
+      "destination": "wwwroot/lib/jquery/"
     }
   ]
 }

@@ -1,29 +1,46 @@
 ﻿@model IEnumerable<RubikBook.Database.Models.Product>
 
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_PanelLayout.cshtml";
 }
 
-<h2 class="p-2">لیست کتاب ها</h2>
 
-<p>
-    <a class="btn btn-success ms-2" asp-action="Create"><span class="fa fa-plus-circle fa-lg"></span> افزودن کتاب جدید</a>
-</p>
-<table class="table">
+<table style="direction:rtl;" class="table">
+
+    <div class="container-sm">
+        <h2 class="p-2">لیست کتاب ها</h2>
+
+        <p>
+            <a class="btn btn-success ms-2" asp-action="Create"><span class="fa fa-plus-circle fa-lg"></span> افزودن کتاب جدید</a><br />
+            <a style="font-size:11px;" class="ms-2" asp-action="Index">نمایش تمام کتاب ها</a><br /><br />
+        </p>
+
+
+        <form asp-controller="Products" asp-action="Index" method="POST">
+            <div class="input-group mb-3">
+                <input style="text-align:right;" type="text" class="form-control" id="searchString" name="searchString" placeholder="...نام کتاب را وارد کنید" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-primary text-end" value="Search" type="submit"><span class="fa fa-search"></span></button>
+                </div>
+            </div>
+        </form>
+    </div>
+
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Img)
             </th>
-@*            <th>
-                @Html.DisplayNameFor(model => model.TotalPages)
+            @*            <th>
+            @Html.DisplayNameFor(model => model.TotalPages)
             </th>*@
-@*            <th>
-                @Html.DisplayNameFor(model => model.CoverType)
+            @*            <th>
+            @Html.DisplayNameFor(model => model.CoverType)
             </th>*@
-@*            <th>
-                @Html.DisplayNameFor(model => model.Des)
+            @*            <th>
+            @Html.DisplayNameFor(model => model.Des)
             </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.ProductName)
@@ -40,71 +57,69 @@
             <th>
                 @Html.DisplayNameFor(model => model.NotShow)
             </th>
-@*            <th>
-                @Html.DisplayNameFor(model => model.Group.GroupName)
+            @*            <th>
+            @Html.DisplayNameFor(model => model.Group.GroupName)
             </th>*@
-@*            <th>
-                @Html.DisplayNameFor(model => model.Author.AuthorName)
+            @*            <th>
+            @Html.DisplayNameFor(model => model.Author.AuthorName)
             </th>*@
-@*            <th>
-                @Html.DisplayNameFor(model => model.Publisher.PublisherName)
-            </th>*@
-@*            <th>
-                @Html.DisplayNameFor(model => model.AgeCategory.AgeCategoryName)
+            @*            <th>
+            @Html.DisplayNameFor(model => model.Publisher.PublisherName)
             </th>*@
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
+        @foreach (var item in Model)
+        {
+            <tr>
                 <td>
                     @*@Html.DisplayFor(modelItem => item.Img)*@
                     <img src="~/image/product/@item.Img" width="128" class="rounded-3 bg-white">
                 </td>
-@*            <td>
-                @Html.DisplayFor(modelItem => item.TotalPages)
+                @*            <td>
+            @Html.DisplayFor(modelItem => item.TotalPages)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CoverType)
+            @Html.DisplayFor(modelItem => item.CoverType)
             </td>*@
-@*            <td>
-                @Html.DisplayFor(modelItem => item.Des)
+                @*            <td>
+            @Html.DisplayFor(modelItem => item.Des)
             </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.ProductName)
                 </td>
-            <td>
-                @*@Html.DisplayFor(modelItem => *@@item.Price.ToString("n0")
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Inventory)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SellOff)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NotShow)
-            </td>
-@*            <td>
-                @Html.DisplayFor(modelItem => item.Group)
+                <td>
+                    @*@Html.DisplayFor(modelItem => *@@item.Price.ToString("n0")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Inventory)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SellOff)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NotShow)
+                </td>
+                @*            <td>
+            @Html.DisplayFor(modelItem => item.Group)
             </td>*@
-@*            <td>
-                @Html.DisplayFor(modelItem => item.Author.AuthorName)
+                @*            <td>
+            @Html.DisplayFor(modelItem => item.Author.AuthorName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Publisher.PublisherName)
+            @Html.DisplayFor(modelItem => item.Publisher.PublisherName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AgeCategory.AgeCategoryName)
+            @Html.DisplayFor(modelItem => item.AgeCategory.AgeCategoryName)
             </td>*@
-            <td>
+                <td>
+                    <a data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="Delete('@(item.Id)')" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"> <span class="fa fa-trash"></span></a> | 
                     <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"> <span class="fa fa-edit"></span>ویرایش</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success"> <span class=""></span>جزئیات</a> |
-                    <a data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="Delete('@(item.Id)')" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"> <span class="fa fa-trash"></span></a>
-            </td>
-        </tr>
-}
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success"> <span class=""></span>جزئیات</a> 
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 
@@ -157,3 +172,22 @@
 
 
 </script>
+
+
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#productTitle").autocomplete({
+            source: 'api/postapi/search'
+        });
+    });
+</script>
+
