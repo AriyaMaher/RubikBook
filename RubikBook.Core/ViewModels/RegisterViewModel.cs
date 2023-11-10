@@ -20,4 +20,5 @@ public class RegisterViewModel
     [MaxLength(25, ErrorMessage = "رمز عبور حداقل 25 کاراکتر")]
     [DataType(DataType.Password)]
     public string RePassword { get; set; }
+
 }

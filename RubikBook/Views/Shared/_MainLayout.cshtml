@@ -6,11 +6,13 @@
 	<meta http-equiv="X-UA-compatible" content="IE=Edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>@ViewBag.Title</title>
+    <link rel="icon" href="~/Image/Site/Logo.png" />
 
     <link rel="stylesheet" href="~/Fonts/icomoon/style.css">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="~/Css/bootstrap.min.css">
+
 
     <!-- Owl Carousel CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -26,6 +28,9 @@
 		@RenderBody()
 	</div>
 
+    @*Footer*@
+    <partial name="_Footer.cshtml" />
+
     <script src="~/js/jquery-3.3.1.min.js"></script>
     <script src="~/js/popper.min.js"></script>
     <script src="~/js/bootstrap.min.js"></script>
@@ -38,18 +43,18 @@
 
     <script>
         $('.owl-carousel').owlCarousel({
-            loop: true,
+            loop: false,
             margin: 10,
             nav: true,
             responsive: {
                 0: {
-                    items: 1
+                    items: 2
                 },
                 600: {
                     items: 3
                 },
                 1000: {
-                    items: 4
+                    items: 3
                 }
             }
         })

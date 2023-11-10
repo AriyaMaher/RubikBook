@@ -45,14 +45,6 @@ namespace RubikBook.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Authors");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AuthorName = "جورج اورول",
-                            NotShow = false
-                        });
                 });
 
             modelBuilder.Entity("RubikBook.Database.Models.Factor", b =>
@@ -74,6 +66,9 @@ namespace RubikBook.Database.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PayInfo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Send")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
@@ -144,32 +139,6 @@ namespace RubikBook.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Groups");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            GroupName = "فلسفه و روانشناسی",
-                            NotShow = false
-                        },
-                        new
-                        {
-                            Id = 2,
-                            GroupName = "تاریخ و جغرافیا",
-                            NotShow = false
-                        },
-                        new
-                        {
-                            Id = 3,
-                            GroupName = "رمان و داستان",
-                            NotShow = false
-                        },
-                        new
-                        {
-                            Id = 4,
-                            GroupName = "کتاب صوتی",
-                            NotShow = false
-                        });
                 });
 
             modelBuilder.Entity("RubikBook.Database.Models.Product", b =>
@@ -269,13 +238,13 @@ namespace RubikBook.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("637fffd4-1beb-4602-81d9-3afd7815cf22"),
+                            Id = new Guid("f47594f2-4f5f-460d-be22-ce7fbac24d10"),
                             RoleName = "admin",
                             RoleTitle = "مدیر"
                         },
                         new
                         {
-                            Id = new Guid("9bb8217b-c6b1-4797-8254-7f2464745f3a"),
+                            Id = new Guid("2ef49cd5-d08d-48b4-b5c0-646ce8b6243c"),
                             RoleName = "user",
                             RoleTitle = "کاربر"
                         });
@@ -314,13 +283,60 @@ namespace RubikBook.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e6651a3e-7ad7-42ce-ba7d-1fc10fa5b603"),
+                            Id = new Guid("3829279a-cdc7-4c98-beb7-f8c3fbc44cfa"),
                             IsActive = true,
                             Mobile = "09115523293",
                             Password = "25-D5-5A-D2-83-AA-40-0A-F4-64-C7-6D-71-3C-07-AD",
-                            RoleId = new Guid("637fffd4-1beb-4602-81d9-3afd7815cf22"),
+                            RoleId = new Guid("f47594f2-4f5f-460d-be22-ce7fbac24d10"),
                             code = 0
                         });
+                });
+
+            modelBuilder.Entity("RubikBook.Database.Models.UserAddress", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Fname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FullAdress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Lname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("userAddresses");
                 });
 
             modelBuilder.Entity("RubikBook.Database.Models.Factor", b =>
@@ -391,6 +407,17 @@ namespace RubikBook.Database.Migrations
                     b.Navigation("Role");
                 });
 
+            modelBuilder.Entity("RubikBook.Database.Models.UserAddress", b =>
+                {
+                    b.HasOne("RubikBook.Database.Models.User", "User")
+                        .WithOne("UserAddress")
+                        .HasForeignKey("RubikBook.Database.Models.UserAddress", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("RubikBook.Database.Models.Author", b =>
                 {
                     b.Navigation("Products");
@@ -419,6 +446,8 @@ namespace RubikBook.Database.Migrations
             modelBuilder.Entity("RubikBook.Database.Models.User", b =>
                 {
                     b.Navigation("Factors");
+
+                    b.Navigation("UserAddress");
                 });
 #pragma warning restore 612, 618
         }

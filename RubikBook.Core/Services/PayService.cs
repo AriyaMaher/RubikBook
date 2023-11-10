@@ -1,36 +1,19 @@
-﻿using Dto.Payment;
-using Dto.Response.Payment;
+﻿using Microsoft.EntityFrameworkCore;
 using RubikBook.Core.Interface;
 using RubikBook.Database.Context;
-using ZarinPal.Class;
 
 namespace RubikBook.Core.Services;
 
 public class PayService : IPay
 {
-    private readonly DatabaseContext _context;
-
-    //zarinpal
-    private readonly Payment _payment;
-    private readonly Authority _authority;
-    private readonly Transactions _transactions;
-
-    private const string merchantId = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"; //zarinpal test
 
     IProfile _profile;
+    private readonly DbContext _context;
 
-    public PayService(DatabaseContext context, IProfile profile)
+    public PayService(DatabaseContext context,IProfile profile)
     {
         _context = context;
         _profile = profile;
-
-        //zarinpal
-        var expose = new Expose();
-        _transactions = new Transactions();
-        _authority = new Authority();
-        _payment = new Payment();
-
-
     }
 
 
@@ -42,27 +25,24 @@ public class PayService : IPay
         }
     }
 
-    public async Task<Request> ShoppingPayment(Guid factorId)
-    {
-        var factor = await _profile.GetFactor(factorId);
-        if (factor == null)
-        {
-            return null;
-        }
-        if (!factor.IsPay)
-        {
-            var result = await _payment.Request(new DtoRequest()
-            {
-                Amount = factor.FactorDetails.Sum(d => d.DetailPrice),
-                MerchantId = merchantId,
-                CallbackUrl = "https://localhost:7182",
-                Email = "",
-                Mobile = "",
-                Description = "فروشگاه کتاب روبیک بوک"
-            }, Payment.Mode.sandbox //zarinpal test
-            );
-            return result;
-        }
-        return null;
-    }
+    //public async Task<bool> ShoppingPayment(Guid factorId)
+    //{
+    //    var order = await _profile.GetFactor(factorId, false);
+    //    var userMobile = order.User.Mobile.ToString();
+    //    if (order==null)
+    //    {
+    //        return false;
+    //    }
+    //    var payment = new Payment(order.TotalPrice);
+    //    var res = payment.PaymentRequest($"پرداخت فاکتور شماره {order.Id}", "https://localhost:44360/profile/ShoppingCart"+order.Id,"UserEmail@gmail.com"+userMobile);
+
+    //    if (res.Result.Status == 100)
+    //    {
+    //        return true;
+    //    }
+    //    else
+    //    {
+    //        return false;
+    //    }
+    //}
 }

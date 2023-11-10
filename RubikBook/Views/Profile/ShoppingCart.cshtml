@@ -7,61 +7,109 @@
 <h2 class="icon-shopping-cart p-2 text-success"></h2>
 
 
-    <section class="h-100" style="background-color: #eee; direction:rtl;">
-        <div class="container h-100 py-5">
-          <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-10">
-      
-                @foreach(var item in Model.FactorDetails)
+
+    <div style="direction:rtl;" class="container h-100 py-5">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-8">
+
+                @if (ViewBag.True==true)
                 {
-                    var price = item.Product.Price;
-                    var selloff = item.Product.SellOff;
-                    var finalPrice = price - (price * selloff / 100);
+                    @foreach (var item in Model.FactorDetails)
+                    {
 
-                    <div class="card rounded-3 mb-4">
-                        <div class="card-body p-4">
-                            <div class="row d-flex justify-content-between align-items-center">
-                                <div class="col-md-2 col-lg-2 col-xl-2">
-                                    <img src="~/Image/Product/@item.Product.Img"
-                                         class="img-fluid rounded-3" alt="Cotton T-shirt">
-                                </div>
-                                <div class="col-md-3 col-lg-3 col-xl-3">
-                                    <p class="lead fw-normal mb-2">@item.Product.ProductName</p>
-                                </div>
-                                <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                    <button class="btn btn-link px-2"
-                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                        <i class="icon-minus-circle"></i>
-                                    </button>
+                        var price = item.Product.Price;
+                        var selloff = item.Product.SellOff;
+                        var count = item.DetailCount;
+                        var p1 = price - (price * selloff / 100);
+                        var finalPrice = p1 * count;
 
-                                    <input id="form1" min="0" name="quantity" value="2" type="number"
-                                           class="form-control form-control-sm" />
+                        <div class="card rounded-3 mb-4">
+                            <div class="card-body p-4">
+                                <div class="row d-flex justify-content-between align-items-center">
+                                    <div class="col-md-2 col-lg-2 col-xl-2">
+                                        <img src="~/Image/Product/@item.Product.Img"
+                                             class="img-fluid rounded-3" alt="Cotton T-shirt">
+                                    </div>
+                                    <div class="col-md-3 col-lg-3 col-xl-3">
+                                        <p class="lead fw-normal mb-2 fs-6">@item.Product.ProductName</p>
+                                    </div>
+                                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
 
-                                    <button class="btn btn-link px-2"
-                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                        <i class=" icon-plus-circle"></i>
-                                    </button>
-                                </div>
-                                <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                    <h5 class="mb-0">@finalPrice.ToString("n0")</h5>
-                                </div>
-                                <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                    <a href="#!" class="text-danger"><i class="icon-trash-o"></i></a>
+
+                                        <div class="btn btn-link px-2">
+                                        <a asp-controller="profile" asp-action="MinusFactorDetail" asp-route-id="@item.Product.Id" class="btn-shopping"><span class=" icon-minus-circle"></span></a>
+                                        </div>
+
+                                        <input id="form1" min="0" max="@item.Product.Inventory" name="quantity" value="@item.DetailCount" type="number" readonly
+                                               class="form-control form-control-sm" />
+
+                                        @if (item.DetailCount < item.Product.Inventory)
+                                        {
+                                            <div class="btn btn-link px-2">
+                                                <a asp-controller="profile" asp-action="AddtoShoppingcartPlus" asp-route-id="@item.Product.Id" class="btn-shopping"><span class=" icon-plus-circle"></span></a>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="btn btn-link px-2">
+                                                <a hidden onclick="" class="btn-shopping"><span class=" icon-plus-circle"></span></a>
+                                            </div>
+                                        }
+
+                                    </div>
+                                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                        <h5 class="mb-0">@finalPrice.ToString("n0")</h5>
+                                    </div>
+                                    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                        <a asp-controller="Profile" asp-action="DeleteOrder" asp-route-id="@item.Product.Id" class="text-danger"><i class="icon-trash-o"></i></a>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                    }
+
+
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            جمع سبد خرید : <span class="text-success">@Model.TotalPrice.ToString("n0")</span>  تومان
+                        </div>
+                    </div>
+
+
+                
+                    var user = ViewBag.UserAddress;
+                    if (user!=null)
+                    {
+
+                        <div style="direction:ltr;" class="">
+                            <div class="card-body">
+                                <a asp-controller="Payment" asp-action="shoppingPay" asp-route-factorId="@Model.Id" class="btn btn-warning btn-block btn-lg">پرداخت</a>
+                            </div>
+                    </div>
+                }
+                else
+                {
+
+                    <div style="direction:ltr;" class="">
+                        <div class="card-body">
+                            <a asp-controller="profile" asp-action="AddUserAdddress" class="btn btn-warning btn-block btn-lg">ثبت آدرس</a>
+                            <p class="text-danger">قبل از خرید آدرس خودتون رو ثبت کنین</p>
                         </div>
                     </div>
                 }
 
-      
-      
-              <div style="direction:ltr;" class="">
-                <div class="card-body">
-                        <a asp-controller="Payment" asp-action="shoppingPay" asp-route-factorId="@Model.Id" class="btn btn-warning btn-block btn-lg">پرداخت</a>
-                </div>
-              </div>
-      
+                    
+                
+
+                }
+                
+                else
+                {
+                    <h3>محصولی در سبد خرید شما وجود ندارد</h3>
+                }
+
+
             </div>
-          </div>
         </div>
-      </section>
+    </div>
+

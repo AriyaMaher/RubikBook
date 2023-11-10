@@ -10,12 +10,25 @@ namespace RubikBook.Database.Context;
 
 public class DatabaseContext : DbContext
 {
+
+
+    
     protected override void OnConfiguring(DbContextOptionsBuilder option)
     {
+        //local
         option.UseSqlServer(@"Data source=.;
                             Initial Catalog=RubikBookDb;
                             Integrated Security=SSPI");
+
+
+        //online
+        //option.UseSqlServer(@"Server=185.252.29.60,2022;
+        //                        Database=rubikboo_RubikBookDb;
+        //                            Uid=rubikboo_ariya ;Pwd=A_riya13841122;");
+
+
     }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -30,4 +43,5 @@ public class DatabaseContext : DbContext
     public DbSet<Publisher> Publishers { get; set; }
     public DbSet<Factor> Factors { get; set; }
     public DbSet<FactorDetail> FactorDetails { get; set; }
+    public DbSet<UserAddress> userAddresses { get; set; }
 }

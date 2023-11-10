@@ -28,6 +28,9 @@ public class Factor
     [Display(Name = "وضعیت سفارش")]
     public string? Status { get; set; }
 
+    [Display(Name = "وضعیت ارسال سفارش")]
+    public string? Send { get; set; } = "101";
+
     [Display(Name = "توضیحات")]
     public string? Des { get; set; }
 

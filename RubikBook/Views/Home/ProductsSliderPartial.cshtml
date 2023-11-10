@@ -4,6 +4,10 @@
 <!--book slider-->
 @foreach (var item in Model)
 {
+    var selloff = item.SellOff;
+    var price = item.Price;
+    var finallyPrice = price - (selloff * price) / 100;
+
     <div class="item">
         <div class="col mb-4">
             <div class="book-item ">
@@ -14,9 +18,9 @@
                 <img src="~/Image/Product/@item.Img" class="card-img-top">
                 <div class="card-body">
                     <h5 style="font-size:14px;" class="card-title">@item.ProductName</h5>
-                    <p class="card-text">$ @item.Price.ToString("n0") </p>
-                    <a href="#" class="btn btn-success icon-shopping_cart text-white"></a>
-                    <a asp-controller="home" asp-action="ProductInfo" asp-route-id="@item.Id" class="btn2 btn btn-outline-success">اطلاعات بیشتر</a>
+                    <p class="card-text"> <span> قیمت: </span>  @finallyPrice.ToString("n0")    </p>
+                    <a href="#" class="btn btn-success icon-shopping_cart text-white col-lg-2 col-4"></a>
+                    <a asp-controller="home" asp-action="ProductInfo" asp-route-id="@item.Id" class="btn btn-outline-success col-lg-9 col-7">بیشتر</a>
                 </div>
             </div>
         </div>

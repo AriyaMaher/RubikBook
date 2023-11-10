@@ -24,15 +24,19 @@ namespace RubikBook.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel register)
         {
-            if(ModelState.IsValid)
+            if (register.Password == register.RePassword)
             {
-                if (await _account.AddUser(register))
+                if (ModelState.IsValid)
                 {
-                    return RedirectToAction(nameof(Login));
+                    if (await _account.AddUser(register))
+                    {
+                        return RedirectToAction(nameof(Login));
+                    }
+                    ModelState.AddModelError("RePassword", "احتمالا این شماره موبایل پیش از این ثبت شده است");
+                    return View(register);
                 }
-                ModelState.AddModelError("RePassword", "احتمالا این شماره موبایل پیش از این ثبت شده است");
-                return View(register);
             }
+            ModelState.AddModelError("RePassword", "رمز عبور و تکرار آن همخوانی ندارد");
             return View(register);
         }
 

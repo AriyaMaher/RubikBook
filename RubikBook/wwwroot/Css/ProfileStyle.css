@@ -19,8 +19,8 @@ body {
 .sidebar {
     position: fixed;
     background-color: rgb(25, 111, 255);
-    border-radius: 5px 0 0 5px;
-    min-height: 100svh;
+/*    border-radius: 5px 0 0 5px;
+*/    min-height: 100svh;
     max-height: 100svh;
     top: 0;
     right: 0;

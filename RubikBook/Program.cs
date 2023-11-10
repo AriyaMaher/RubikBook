@@ -16,8 +16,10 @@ builder.Services.AddScoped<IGroup, GroupService>();
 builder.Services.AddScoped<IProduct, ProductService>();
 builder.Services.AddScoped<IProfile, ProfileService>();
 builder.Services.AddScoped<IPublisher, PublisherService>();
+builder.Services.AddScoped<IOrders, OrderService>();
 builder.Services.AddScoped<DatabaseContext, DatabaseContext>();
 #endregion
+
 
 const string scheme = "rubikbook";
 builder.Services.AddAuthentication(scheme).AddCookie(scheme, option =>

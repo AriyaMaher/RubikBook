@@ -1,6 +1,14 @@
-﻿body {
+﻿
+@font-face {
+    font-family: 'LA';
+    src: url('../Fonts/Vazir-Light.ttf');
+}
+
+
+body {
     background-color: rgb(0, 40, 121) !important;
     color: white !important;
+    font-family:LA;
 }
 
 a {

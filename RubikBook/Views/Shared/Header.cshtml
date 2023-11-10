@@ -15,14 +15,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <a href="#" class=""><span class="mr-2  icon-envelope-open-o"></span> <span class="d-none d-md-inline-block">info@yourdomain.com</span></a>
+                    <a href="#" class=""><span class="mr-2  icon-envelope-open-o"></span> <span class="d-none d-md-inline-block">ariyakoohravand@gmail.com</span></a>
                     <span class="mx-md-2 d-inline-block"></span>
-                    <a href="#" class=""><span class="mr-2  icon-phone"></span> <span class="d-none d-md-inline-block">1+ (234) 5678 9101</span></a>
+                    <a href="#" class=""><span class="mr-2  icon-phone"></span><span class="d-none d-md-inline-block">09115523293</span></a>
 
 
                     <div class="float-right">
 
-                        <a href="#" class=""><span class="mr-2  icon-instagram"></span> <span class="d-none d-md-inline-block">Instagram</span></a>
+                        <a href="https://instagram.com/rubik_book?igshid=NzZlODBkYWE4Ng==" class=""><span class="mr-2  icon-instagram"></span> <span class="d-none d-md-inline-block">Instagram</span></a>
                         <span class="mx-md-2 d-inline-block"></span>
                         <a href="#" class=""><span class="mr-2  icon-telegram"></span> <span class="d-none d-md-inline-block">Telegram</span></a>
 
@@ -42,7 +42,7 @@
 
 
                 <div class="site-logo">
-                    <a asp-controller="Home" asp-action="Index" class="text-black logo-text"><img class="pnglogo" src="~/Image/Site/Logo.png" alt="">Rubik Book</a>
+                    <a asp-controller="Home" asp-action="Index" class="text-black logo-text"><img class="pnglogo" src="~/Image/Site/Logo.png" alt=""></a><span class="logo-text logo-t1">Rubik Book</span>
                 </div>
 
 
@@ -56,7 +56,7 @@
 
 
                             <li class="has-children">
-                                <a href="#about-section" class="nav-link">دسته بندی کتاب ها</a>
+                                <a asp-controller="home" asp-action="allGroups" class="nav-link">دسته بندی کتاب ها</a>
                                 <ul class="dropdown arrow-top">
                                     <partial name="~/views/home/HeaderGroupsPartial.cshtml" model="Model.GroupsForHeader" />
                                 </ul>
@@ -64,7 +64,7 @@
 
 
                             <li class="has-children">
-                                <a href="#about-section" class="nav-link">نویسندگان</a>
+                                <a asp-controller="home" asp-action="allAuthors" class="nav-link">نویسندگان</a>
                                 <ul class="dropdown arrow-top">
                                     <partial name="~/views/home/HeaderAuthorsPartial.cshtml" model="Model.AuthorsForHeader" />
                                 </ul>
@@ -76,11 +76,12 @@
                             @{
                                 if (User.Identity.IsAuthenticated)
                                 {
-                                    <li><a asp-action="index" asp-controller="profile" class="nav-link text-success"><span class="mr-2  icon-user"></span>حساب کاربری</a></li>
+                                    <li><a asp-action="index" asp-controller="profile" class="nav-link text-success"> حساب کاربری <span class="mr-2  icon-user"></span></a></li>
                                 }
                                 else
                                 {
-                                    <li><a asp-action="login" asp-controller="account" class="nav-link"><span class="mr-2  icon-user"></span>ثبت نام / ورود</a></li>
+                                    <li><a asp-action="login" asp-controller="account" class="nav-link"> ثبت نام / ورود <span class="mr-2  icon-user"></span></a></li>
+                                    //<li><a class="nav-link"> ثبت نام / ورود <span class="mr-2  icon-user"></span></a></li>
                                 }
                             }
 
@@ -100,7 +101,7 @@
 
         <div class="container">
             <form asp-controller="Home" asp-action="SearchProduct" method="POST">
-                <div class="input-group mb-3">
+                <div class="input-group mb-2 search-inp">
                     <input style="text-align:right;outline: none !important;" type="text" class="form-control" id="searchString" name="searchString" placeholder="...نام کتاب مورد نظرتون رو وارد کنید" aria-label="Recipient's username" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                         <button style="background-color:#3c6d56; color:white;" class="btn text-end" value="Search" type="submit"><span class="icon icon-search"></span></button>

@@ -5,24 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RubikBook.Database.Migrations
 {
-    public partial class CreatDb : Migration
+    public partial class newtest : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "AgeCategorys",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AgeCategoryName = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    NotShow = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AgeCategorys", x => x.Id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Authors",
                 columns: table => new
@@ -91,7 +77,6 @@ namespace RubikBook.Database.Migrations
                     PublisherId = table.Column<int>(type: "int", nullable: false),
                     TotalPages = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CoverType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AgeCategoryId = table.Column<int>(type: "int", nullable: false),
                     Des = table.Column<string>(type: "nvarchar(125)", maxLength: 125, nullable: true),
                     Img = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<int>(type: "int", nullable: false),
@@ -102,12 +87,6 @@ namespace RubikBook.Database.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Products_AgeCategorys_AgeCategoryId",
-                        column: x => x.AgeCategoryId,
-                        principalTable: "AgeCategorys",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Products_Authors_AuthorId",
                         column: x => x.AuthorId,
@@ -150,56 +129,115 @@ namespace RubikBook.Database.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.InsertData(
-                table: "AgeCategorys",
-                columns: new[] { "Id", "AgeCategoryName", "NotShow" },
-                values: new object[,]
+            migrationBuilder.CreateTable(
+                name: "Factors",
+                columns: table => new
                 {
-                    { 1, "کودک", false },
-                    { 2, "نوجوان", false },
-                    { 3, "جوان", false },
-                    { 4, "بزرگسال", false }
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    OpenDateTime = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CloseDateTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsPay = table.Column<bool>(type: "bit", nullable: false),
+                    PayInfo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Send = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Des = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TotalPrice = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Factors", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Factors_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.InsertData(
-                table: "Authors",
-                columns: new[] { "Id", "AuthorDes", "AuthorName", "NotShow" },
-                values: new object[] { 1, null, "جورج اورول", false });
-
-            migrationBuilder.InsertData(
-                table: "Groups",
-                columns: new[] { "Id", "GroupDes", "GroupName", "NotShow" },
-                values: new object[,]
+            migrationBuilder.CreateTable(
+                name: "UserAddress",
+                columns: table => new
                 {
-                    { 1, null, "فلسفه و روانشناسی", false },
-                    { 2, null, "تاریخ و جغرافیا", false },
-                    { 3, null, "رمان و داستان", false },
-                    { 4, null, "کتاب صوتی", false }
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Fname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Lname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    State = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FullAdress = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserAddress", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserAddress_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.InsertData(
-                table: "Publishers",
-                columns: new[] { "Id", "NotShow", "PublisherName" },
-                values: new object[] { 1, false, "پرتقال" });
+            migrationBuilder.CreateTable(
+                name: "FactorDetails",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FactorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DetailCount = table.Column<int>(type: "int", nullable: false),
+                    DetailPrice = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FactorDetails", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FactorDetails_Factors_FactorId",
+                        column: x => x.FactorId,
+                        principalTable: "Factors",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FactorDetails_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
             migrationBuilder.InsertData(
                 table: "Roles",
                 columns: new[] { "Id", "RoleName", "RoleTitle" },
-                values: new object[,]
-                {
-                    { new Guid("04b4dd41-cbdf-4fe0-8b8a-f68387c34c9f"), "user", "کاربر" },
-                    { new Guid("b2bc7663-4602-4440-832f-fb856de1d3c9"), "admin", "مدیر" }
-                });
+                values: new object[] { new Guid("8fe51653-0a6f-4a77-abf0-a679da424b2e"), "admin", "مدیر" });
+
+            migrationBuilder.InsertData(
+                table: "Roles",
+                columns: new[] { "Id", "RoleName", "RoleTitle" },
+                values: new object[] { new Guid("d7ad81f8-f208-44e3-8c17-6c50eae61069"), "user", "کاربر" });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "IsActive", "Mobile", "Password", "RoleId", "code" },
-                values: new object[] { new Guid("7becd03c-d0a5-4914-b7f5-4dfbcdfe3bf6"), true, "09115523293", "25-D5-5A-D2-83-AA-40-0A-F4-64-C7-6D-71-3C-07-AD", new Guid("b2bc7663-4602-4440-832f-fb856de1d3c9"), 0 });
+                values: new object[] { new Guid("9f9280db-f5ba-47e1-b83e-e3b7f4830d3c"), true, "09115523293", "25-D5-5A-D2-83-AA-40-0A-F4-64-C7-6D-71-3C-07-AD", new Guid("8fe51653-0a6f-4a77-abf0-a679da424b2e"), 0 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_AgeCategoryId",
-                table: "Products",
-                column: "AgeCategoryId");
+                name: "IX_FactorDetails_FactorId",
+                table: "FactorDetails",
+                column: "FactorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FactorDetails_ProductId",
+                table: "FactorDetails",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Factors_UserId",
+                table: "Factors",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_AuthorId",
@@ -217,6 +255,12 @@ namespace RubikBook.Database.Migrations
                 column: "PublisherId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_UserAddress_UserId",
+                table: "UserAddress",
+                column: "UserId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Users_RoleId",
                 table: "Users",
                 column: "RoleId");
@@ -225,13 +269,19 @@ namespace RubikBook.Database.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "FactorDetails");
+
+            migrationBuilder.DropTable(
+                name: "UserAddress");
+
+            migrationBuilder.DropTable(
+                name: "Factors");
+
+            migrationBuilder.DropTable(
                 name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Users");
-
-            migrationBuilder.DropTable(
-                name: "AgeCategorys");
 
             migrationBuilder.DropTable(
                 name: "Authors");

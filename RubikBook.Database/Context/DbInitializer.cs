@@ -40,20 +40,20 @@ namespace RubikBook.Database.Context
                 IsActive = true,
             }; _modelBuilder.Entity<User>().HasData(adminUser);
 
-            List<Group> defaultgroups = new List<Group>()
-            {
-                new Group() { Id = 1, GroupName = "فلسفه و روانشناسی" },
-                new Group() { Id = 2, GroupName = "تاریخ و جغرافیا" },
-                new Group() { Id = 3, GroupName = "رمان و داستان" },
-                new Group() { Id = 4, GroupName = "کتاب صوتی" },
-            }; _modelBuilder.Entity<Group>().HasData(defaultgroups);
+            //List<Group> defaultgroups = new List<Group>()
+            //{
+            //    new Group() { Id = 1, GroupName = "فلسفه و روانشناسی" },
+            //    new Group() { Id = 2, GroupName = "تاریخ و جغرافیا" },
+            //    new Group() { Id = 3, GroupName = "رمان و داستان" },
+            //    new Group() { Id = 4, GroupName = "کتاب صوتی" },
+            //}; _modelBuilder.Entity<Group>().HasData(defaultgroups);
 
-            Author author = new Author()
-            {
-                Id = 1,
-                AuthorName = "جورج اورول",
+            //Author author = new Author()
+            //{
+            //    //Id = 1,
+            //    AuthorName = "جورج اورول",
 
-            }; _modelBuilder.Entity<Author>().HasData(author);
+            //}; _modelBuilder.Entity<Author>().HasData(author);
 
         }
     }

@@ -3,34 +3,46 @@
 <!--book new add-->
 
 
+
+
 <div class="container text-center mt-5">
     <div class="row justify-content-md-center">
 
         @foreach (var item in Model)
         {
-            <div class="product-card">
 
-                <div class="main-images">
-                    <img id="blue" class="blue active"
-                         src="~/Image/Product/@item.Img"
-                         alt="blue">
+
+
+                var price = item.Price;
+                var sellOff = item.SellOff;
+                var finallyPrice = price - (price * sellOff) / 100;
+
+
+
+        <div id="products" class="product-card items">
+
+            <div class="main-images">
+                <img id="blue" class="blue active"
+                     src="~/Image/Product/@item.Img"
+                     alt="blue">
+            </div>
+
+            <br>
+            <div class="shoe-details">
+                <span class="shoe_name">@item.ProductName</span>
+                <hr>
+            </div>
+
+            <div class="group-price">
+                <div class="group-option">
+                    <span class="group">دسته بندی: @item.Group.GroupName </span>
                 </div>
+                <div class="price">
+                        <h6 class="text-danger"><s class="price_num">@item.Price.ToString("n0")</s></h6>
+                        <span class="price_num1">@finallyPrice.ToString("n0")</span>
+                    <span class="price_letter">@item.Author.AuthorName</span>
 
-                <br> 
-                <div class="shoe-details">
-                    <span class="shoe_name">@item.ProductName</span>
-                    <hr>
-                </div>
-
-                <div class="group-price">
-                    <div class="group-option">
-                        <span class="group">دسته بندی: @item.Group.GroupName </span>
-                    </div>
-                    <div class="price">
-                        <span class="price_num">@item.Price.ToString("n0")</span>
-                        <span class="price_letter">@item.Author.AuthorName</span>
-
-                        @if (item.SellOff > 0)
+                    @if (item.SellOff > 0)
                         {
                             <div class="ribbon ribbon-top-left"><span>تخفیف %@item.SellOff</span></div>
                         }

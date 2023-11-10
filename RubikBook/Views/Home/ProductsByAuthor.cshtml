@@ -4,5 +4,12 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
+
+
+@if (ViewBag.situation == false)
+{
+    <h4 class="text-center text-danger container mt-4">هنوز محصولی برای این نویسنده ثبت نشده است</h4>
+}
+
 <partial name="productsPartial" model="ViewBag.ProductsbyAuthor" />
 

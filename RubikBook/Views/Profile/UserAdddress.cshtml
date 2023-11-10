@@ -1,0 +1,87 @@
+﻿@model RubikBook.Database.Models.UserAddress
+
+@{
+    ViewData["Title"] = "UserAdddress";
+    Layout = "~/Views/Shared/_UserProfileLayout.cshtml";
+}
+
+
+
+
+@if (Model == null)
+{
+    <div class="container text-center p-5">
+        <p class="text-danger">آدرسی ثبت نکرده اید . از طریق گزینه پایین ثبت کنید</p>
+        <a class="btn btn-primary" asp-action="AddUserAdddress">ثبت آدرس</a>
+    </div>
+}
+else
+{
+    <div style="direction:rtl;" class="container p-3">
+        <h2 class="mb-3">آدرس شما</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        نام
+                    </th>
+                    <th>
+                        نام خانوادگی
+                    </th>
+                    <th>
+                        شماره تماس
+                    </th>
+                    <th>
+                        استان
+                    </th>
+                    <th>
+                        شهر
+                    </th>
+                    <th>
+                        کد پستی
+                    </th>
+                    @*            <th>
+                آدرس کامل
+                </th>*@
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.Fname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.Lname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.State)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.PostalCode)
+                    </td>
+                    @*            <td>
+                @Html.DisplayFor(modelItem => Model.FullAdress)
+                </td>*@
+
+                    <td>
+                        @* <a asp-action="DeleteUserAdddress" asp-route-id="@Model.Id" class="btn btn-danger"> <span class="fa fa-trash"></span></a> |*@
+                        <a asp-action="DeleteUserAdddress" class="btn btn-danger"> <span class="fa fa-trash"></span></a>
+                        <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-success"> <span class=""></span>جزئیات</a> |
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning"> <span class="fa fa-edit"></span>ویرایش</a>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+}

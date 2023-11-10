@@ -5,7 +5,25 @@
 }
 
 
+    <div class="container">
+        <h3 class="text-center"><span class="text-success"> تمامی</span> کتاب ها</h3>
+        <hr class="hr-2">
+    </div>
 
-<partial name="ProductsPartial.cshtml" model="@Model.Products" />
+    <br />
+    <div class="container text-right" id="myBtnContainer">
+
+        <select id="sort" class="form-select" onchange="showMostExpensiveProduct()" aria-label="Default select example">
+            <option selected>:مرتب‌ سازی براساس</option>
+            <option value="1">نمایش همه</option>
+            <option value="2">ارزان ترین</option>
+            <option value="3">گران ترین</option>
+        </select>
+    </div>
+
+
+
+    <partial name="ProductsPartial.cshtml" model="@Model.Products" />
+</div>
 
 

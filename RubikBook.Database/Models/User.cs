@@ -20,7 +20,7 @@ public class User
     public Guid RoleId { get; set; }
 
     [Required]
-    [Display(Name ="شماره موبایل")]
+    [Display(Name = "شماره موبایل")]
     [MaxLength(11)]
     [MinLength(11)]
     public string Mobile { get; set; }
@@ -32,12 +32,21 @@ public class User
     [MinLength(4)]
     public int code { get; set; }
 
+
+
+
+
     [Display(Name = "وضعیت کاربر")]
     public bool IsActive { get; set; }= false;
 
 
+
+
+
     [ForeignKey("RoleId")]
     public virtual Role Role { get; set; }
+
+    public virtual UserAddress? UserAddress { get; set; }
 
     public virtual ICollection<Factor>? Factors { get; set; }
 }

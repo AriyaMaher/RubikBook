@@ -17,7 +17,7 @@ body {
 
 .sidebar {
     position: fixed;
-    background-color: #043330;
+    background-color: #1a294e;
     border-radius: 5px 0 0 5px;
     min-height: 100svh;
     max-height: 100svh;
@@ -26,15 +26,15 @@ body {
     bottom: 0;
     padding: 5px;
     direction: rtl;
-    width: 24%;
+    width: 25%;
     text-align: center;
+    padding:20px;
 }
 
     .sidebar a {
         color: white !important;
         margin-top: 3px;
         display: inline-block;
-        padding: 5px 2px;
         text-decoration: none;
         transition: 0.3s;
         font-size: 17px;

@@ -41,18 +41,6 @@ public class HomeController : Controller
         return View(allViewModel);
     }
 
-    public async Task<IActionResult> AddShoppingFromIndexPartial(Guid id)
-    {
-        var product = await _product.GetProduct(id);
-        var user = await _profile.GetUser(User.Identity.Name);
-        ShoppingViewModel shoppingViewModel = new ShoppingViewModel()
-        {
-            UserId = user.Id,
-            ProductId = product.Id,
-        };
-
-        return PartialView(shoppingViewModel);
-    }
 
 
     public async Task<IActionResult> ProductInfo(Guid id)
@@ -147,6 +135,10 @@ public class HomeController : Controller
             GroupsForHeader = headerGroups,
             AuthorsForHeader = headerAuhtors,
         };
+        if (products.Count<1)
+        {
+            ViewBag.situation = false;
+        }
         ViewBag.productsByGroup = products;
         return View(allViewModel);
     }
@@ -162,6 +154,10 @@ public class HomeController : Controller
             GroupsForHeader = headerGroups,
             AuthorsForHeader = headerAuhtors,
         };
+        if (products.Count<1)
+        {
+            ViewBag.situation = false;
+        }
         ViewBag.ProductsByAuthor = products;
         return View(allViewModel);
     }

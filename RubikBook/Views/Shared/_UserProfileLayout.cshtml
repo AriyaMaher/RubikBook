@@ -13,19 +13,27 @@
     <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="sidebar col-6 p-4">
+    <div style="width:30%;" class="sidebar text-center">
+        
         <h3 class="text-center text-white rounded mb-4">پنل کاربری </h3><hr class="text-white" />
+        <div class="row">
+            <a class="btn btn-primary mt-2" asp-controller="home" asp-action="Index"><span class="fa fa-home fa-lg"></span><br />هوم</a>
+            <a class="btn btn-primary mt-2" asp-controller="profile" asp-action="ShoppingCart"><span class="fa fa-shopping-bag fa-lg"></span><br />سفارشات</a>
+            <a class="btn btn-primary mt-2" asp-controller="profile" asp-action="UserAdddress"><span class="fa fa-address-book fa-lg"></span><br />آدرس</a>
+            <a class="btn btn-primary mt-2"><span class="fa fa-gears fa-lg"></span><br />تنظیمات</a>
+            <a class="btn btn-primary mt-2"><span class="fa fa-headphones fa-lg"></span><br />پشتیبانی</a>
+            <a class="btn btn-danger mt-3 " href="~/account/logout"><span class="fa fa-sign-out fa-lg"></span>خروج</a>
+        </div>
 
-        <a class="btn btn-success mt-2 col-5" asp-controller="home" asp-action="Index"><span class="fa fa-home fa-lg"></span><br />صفحه هوم</a>
-        <a class="btn btn-success mt-2 col-5" asp-controller="profile" asp-action="ShoppingCart"><span class="fa fa-shopping-bag fa-lg"></span><br />سفارشات</a>
-        <a class="btn btn-success mt-2 col-5"><span class="fa fa-gears fa-lg"></span><br />تنظیمات</a>
-        <a class="btn btn-success mt-2 col-5"><span class="fa fa-headphones fa-lg"></span><br />پشتیبانی</a>
-        <a class="btn btn-danger mt-3 col-10" href="~/account/logout"><span class="fa fa-sign-out fa-lg"></span>خروج</a>
     </div>
 
 
 
-    <div class="col-md-9 col-6">
+
+
+
+
+    <div class="col-lg-8 col-8">
         @RenderBody()
     </div>
 </body>

@@ -163,6 +163,9 @@ public class ProductService : IProduct
 		if (author == null) return null;
 
 		var products = _context.Products.Include(a => a.Author).Include(g => g.Group).Include(p => p.Publisher).Where(i => i.AuthorId == author.Id && i.NotShow == false).ToList();
-		return await Task.FromResult(products);
+		if (products==null) return null;
+
+
+        return await Task.FromResult(products);
     }
 }

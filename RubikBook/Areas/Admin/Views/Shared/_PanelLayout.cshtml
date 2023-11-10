@@ -13,22 +13,22 @@
 </head>
 <body>
 
-    <div class="sidebar col-6 p-4">
+    <div style="width:30%" class="sidebar">
         <h3 class="text-center text-white rounded mb-4">پنل مدیریت سایت</h3><hr class="text-white" />
+        <div class="row">
+            <a class="btn btn-primary" asp-controller="Panel" asp-action="Index"><span class="fa fa-home fa-lg"></span><br />صفحه هوم</a>
+            <a class="btn btn-primary" href="#"><span class="fa fa-users fa-lg"></span><br />کاربران</a>
+            <a class="btn btn-primary" asp-controller="Groups" asp-action="Index"><span class="fa fa-list fa-lg"></span><br />دسته بندی</a>
+            <a class="btn btn-primary" asp-controller="Products" asp-action="Index"><span class="fa fa-book fa-lg"></span><br />کتاب ها</a>
+            <a class="btn btn-primary" asp-controller="Authors" asp-action="Index"><span class="fa fa-pencil fa-lg"></span><br />نویسندگان</a>
+            <a class="btn btn-primary" asp-controller="Publishers" asp-action="Index"><span class="fa fa-handshake-o fa-lg"></span><br />ناشر ها</a>
+            <a class="btn btn-primary" asp-controller="Orders" asp-action="Index"><span class="fa fa-shopping-bag fa-lg"></span><br />سفارشات</a>
+            <a class="btn btn-danger " href="~/account/logout"><span class="fa fa-sign-out fa-lg"></span>خروج</a>
+        </div>
 
-        <a class="btn btn-success mt-2 col-5" asp-controller="Panel" asp-action="Index"><span class="fa fa-home fa-lg"></span><br />صفحه هوم</a>
-        <a class="btn btn-success mt-2 col-5" href="#"><span class="fa fa-users fa-lg"></span><br />کاربران</a>
-        <a class="btn btn-success mt-2 col-5" asp-controller="Groups" asp-action="Index"><span class="fa fa-list fa-lg"></span><br />دسته بندی</a>
-        <a class="btn btn-success mt-2 col-5" asp-controller="Products" asp-action="Index"><span class="fa fa-book fa-lg"></span><br />کتاب ها</a>
-        <a class="btn btn-success mt-2 col-5" asp-controller="Authors" asp-action="Index"><span class="fa fa-pencil fa-lg"></span><br />نویسندگان</a>
-        <a class="btn btn-success mt-2 col-5" asp-controller="Publishers" asp-action="Index"><span class="fa fa-handshake-o fa-lg"></span><br />ناشر ها</a>
-        <a class="btn btn-success mt-2 col-5" href="#"><span class="fa fa-shopping-bag fa-lg"></span><br />سفارشات</a>
-        <a class="btn btn-success mt-2 col-5"><span class="fa fa-gears fa-lg"></span><br />تنظیمات</a>
-        <a class="btn btn-success mt-2 col-5"><span class="fa fa-headphones fa-lg"></span><br />پشتیبانی</a>
-        <a class="btn btn-danger mt-3 col-10" href="~/account/logout"><span class="fa fa-sign-out fa-lg"></span>خروج</a>
     </div>
 
-    <div class="col-md-9 col-6" >
+    <div class="col-md-8 col-6">
         @RenderBody()
     </div>
 </body>
